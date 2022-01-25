@@ -21,21 +21,21 @@ const app = express();
 
 // Mongoose schema of the recipe
 const RecipeSchema = mongoose.Schema({
-  title: {
-    type: String, 
-    required: true,    
-  },
-  ingredients: {
-    type: String, 
-    required: true, 
-  },
-  category: {
-  	type: String,
-  },
+	title: {
+		type: String,
+		required: true,
+	},
+	ingredients: {
+		type: String,
+		required: true,
+	},
+	category: {
+		type: String,
+	},
 	cookingSteps: {
 		type: String,
 		required: true,
-    trim: true,
+		trim: true,
 	},
 	likes: {
 		type: Number,
@@ -45,21 +45,18 @@ const RecipeSchema = mongoose.Schema({
 		type: Date,
 		default: Date.now,
 	},
-  uploadedBy: {
-    type: String,
-    required: true
-  },
-  recipeCreator: {
-    type: String,
-    required: true
-  }
+	uploadedBy: {
+		type: String,
+		required: true,
+	},
+	recipeCreator: {
+		type: String,
+		required: true,
+	},
 });
 //-----------------PICTURE UPLOAD VIA MOLTER????---------------
 //-----------------TAGS & CATEGORY????-------------------------
 //Schema.plugin(random, { path: 'r' }); // by default `path` is `random`. It's used internally to store a random value on each doc.
-
-
-
 
 // Mongoose model which includes the Recipe schema
 const Recipe = mongoose.model('Recipe', RecipeSchema);
@@ -67,10 +64,10 @@ const Recipe = mongoose.model('Recipe', RecipeSchema);
 // Mongoose schema for user
 const UserSchema = new mongoose.Schema({
 	name: {
-    type: String,
-    required: true
-  },    
-  username: {
+		type: String,
+		required: true,
+	},
+	username: {
 		type: String,
 		unique: true,
 	},
@@ -81,6 +78,7 @@ const UserSchema = new mongoose.Schema({
 	email: {
 		type: String,
 		required: true,
+		unique: true,
 	},
 	accessToken: {
 		type: String,
@@ -111,48 +109,77 @@ const authenticateUser = async (req, res, next) => {
 
 // Start defining your routes here
 app.get('/', (req, res) => {
-	res.send(
-		'Welcome to Jessica and Rebeccas recipe bank!'
-	);
+	res.send('Welcome to Jessica and Rebeccas recipe bank!');
 });
 
-
-
-//OK//--------------Sign up-------------- 
+//OK//--------------Sign up--------------
 app.post('/signup', async (req, res) => {
 	const { name, email, username, password } = req.body;
 	try {
 		const salt = bcrypt.genSaltSync();
-		//a condition for creating a password
+
+		// a condition for creating a password
 		if (password.length < 6 && username.length < 5) {
+			console.log('hello');
 			//redirecting to catch
 			throw 'Password must be at least 6 characters long and username must be longer than 5 characters';
 		}
-
 		const newUser = await new User({
 			name,
 			username,
 			email,
 			password: bcrypt.hashSync(password, salt),
 		}).save();
-    res.status(201).json({
-      response: { name: newUser.username, id: newUser._id },
-      success: true,
-    });
-  } catch (error) {
-    res.status(400).json({ response: error, success: false, message: 'New user could not be created' });
-  }
+		res.status(201).json({
+			response: { username: newUser.username, id: newUser._id },
+			success: true,
+		});
+	} catch (error) {
+		res.status(400).json({
+			response: error,
+			success: false,
+			message: 'New user could not be created',
+		});
+	}
 });
 
-//OK//--------------Recipes without signing in-------------- 
+//OK//-------------- Log in--------------
+app.post('/signin', async (req, res) => {
+	const { username, password } = req.body; //object destructuring
+	try {
+		const user = await User.findOne({ username });
+		if (user && bcrypt.compareSync(password, user.password)) {
+			res.status(200).json({
+				response: {
+					userId: user._id,
+					username: user.username,
+					accessToken: user.accessToken,
+				},
+				success: true,
+			});
+		} else {
+			res.status(404).json({
+				response: 'User not found or password does not match',
+				success: false,
+			});
+		}
+	} catch (error) {
+		res.status(400).json({
+			response: error,
+			success: false,
+		});
+	}
+});
+
+//OK//--------------Recipes without signing in--------------
 // Endpoint to return 10 random recipes
 app.get('/recipeList', async (req, res) => {
 	// get 10 random recipes
 	const recipeList = await Recipe.findRandom()
 		.limit(10)
-    .exec(function (err, recipes) {
-      console.log(recipes);
-    });
+		.exec(function (err, recipes) {
+			console.log('hello');
+		});
 	res.json(recipeList);
 });
 
@@ -160,26 +187,48 @@ app.get('/recipeList', async (req, res) => {
 app.get('/recipes', authenticateUser);
 app.get('/recipes', async (req, res) => {
 	const recipe = await Recipe.find({});
-	res.status(201).json({ response: secrets, success: true });
+	res.status(201).json({ response: recipe, success: true });
 });
 
-//OK//--------------Post new recipe-------------- 
+//OK//--------------Post new recipe--------------
 // Endpoint to post new recipe
 app.post('/recipes', async (req, res) => {
-	const { title, ingredients, cookingSteps, category, uploadedBy, recipeCreator } = req.body;
+	const {
+		title,
+		ingredients,
+		cookingSteps,
+		category,
+		uploadedBy,
+		recipeCreator,
+	} = req.body;
 
 	try {
-		const newRecipe = await new Recipe({ title, ingredients, cookingSteps, category, uploadedBy, recipeCreator }).save();
+		const newRecipe = await new Recipe({
+			title,
+			ingredients,
+			cookingSteps,
+			category,
+			uploadedBy,
+			recipeCreator,
+		}).save();
 
 		//If successful, status code = successful:
-		res.status(201).json({ response: newThought, success: true, message: 'New recipe was created' });
+		res.status(201).json({
+			response: newRecipe,
+			success: true,
+			message: 'New recipe was created',
+		});
 	} catch (error) {
 		// If above code is unsuccessful, status code = bad request:
-		res.status(400).json({ response: error, success: false, message: 'Recipe could not be created, please try again' });
+		res.status(400).json({
+			response: error,
+			success: false,
+			message: 'Recipe could not be created, please try again',
+		});
 	}
 });
 
-//OK//--------------Like recipe-------------- 
+//OK//--------------Like recipe--------------
 // Endpoint to like message
 app.post('/recipes/:recipeId/like', async (req, res) => {
 	const { recipeId } = req.params;
@@ -195,10 +244,16 @@ app.post('/recipes/:recipeId/like', async (req, res) => {
 			// Returns the modified document instead of the original. OPTIONAL parameter!
 			{ new: true }
 		);
-		res.status(201).json({ response: addLike, success: true, message: 'Recipe was liked' });
+		res
+			.status(201)
+			.json({ response: addLike, success: true, message: 'Recipe was liked' });
 	} catch (error) {
 		// If above code is unsuccessful, this happens:
-		res.status(400).json({ response: error, success: false, message: 'Oh, something went wrong. Could not send like...' });
+		res.status(400).json({
+			response: error,
+			success: false,
+			message: 'Oh, something went wrong. Could not send like...',
+		});
 	}
 });
 
