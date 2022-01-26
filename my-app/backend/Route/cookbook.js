@@ -1,28 +1,26 @@
-// om vi ändrar namn på projektet, kom ihåg att ändra namn i package.json!!!!
-
-// Ladda ner npm i mongoose-random
-
 import express from 'express';
-import cors from 'cors';
+import listEndPoints from 'express-list-endpoints'; // for listing all routes
 import mongoose from 'mongoose';
-import crypto from 'crypto';
-import bcrypt from 'bcrypt-nodejs';
+import bcrypt from 'bcrypt';
 
-import User from '../models/users'; 
+//-------------importing models----------------//
+import User from '../models/users';
 import Recipe from '../models/recipes';
+import authenticateUser from '../utils/authentication';
 
-const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/recipeBank';
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+const app = express.Router();
+
+//---------------------database ---------------------------//
+
+const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/cookbook';
+mongoose.connect(mongoUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true, //vad är det här?
+});
 mongoose.Promise = Promise;
 
-const port = process.env.PORT || 8090;
-const app = express();
-
-// Add middlewares to enable cors and json body parsing
-app.use(cors());
-app.use(express.json());
-
-
+//-----------------ENDPOINTS----------------------
 app.get('/', (req, res) => {
 	res.send('Welcome to Jessica and Rebeccas recipe bank!');
 });
@@ -174,8 +172,4 @@ app.post('/recipes/:recipeId/like', async (req, res) => {
 	}
 });
 
-// Start the server
-app.listen(port, () => {
-	// eslint-disable-next-line
-	console.log(`Server running on http://localhost:${port}`);
-});
+export default app;
