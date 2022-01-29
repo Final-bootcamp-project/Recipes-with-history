@@ -4,7 +4,11 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const RecipeList = () => {
   return (
-    <div></div>
+    <div>
+      <p>
+        
+        </p>
+    </div>
   )
 };
 

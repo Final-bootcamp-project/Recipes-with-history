@@ -3,9 +3,10 @@ import { useSelector, useDispatch, batch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import styled from "styled-components";
 
-import { Container } from "../styling/Section";
+import { Container } from "./styling/Section.js";
+import { Form } from "./styling/Form.js";
 
-import recipe, { postRecipe } from "../reducers/recipes";
+import { recipe, postRecipe } from "../reducers/recipes.js";
 
 const AddRecipe = () => {
   const [recipe, setRecipe] = useState("");
