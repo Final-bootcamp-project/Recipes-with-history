@@ -1,4 +1,4 @@
-import User from '../models/users';
+import { User } from '../models/User.js';
 
 //A shield asking for accessToken
 const authenticateUser = async (req, res, next) => {

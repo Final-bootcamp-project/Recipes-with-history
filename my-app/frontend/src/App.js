@@ -3,21 +3,21 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
-import LogIn from './components/CreateRecipe';
-import SignUp from './components/SignUp';
-import CreateRecipe from './components/CreateRecipe';
-import Loader from 'components/Loader';
-import NotFound from 'components/NotFound';
-import Profile from 'components/Profile';
-import RecipeList from 'components/RecipeList';
-import Recipes from './components/Recipes';
+import LogIn from './components/LogIn.js';
+import SignUp from './components/SignUp.js';
+//import CreateRecipe from './components/CreateRecipe';
+//import Loader from 'components/Loader';
+import NotFound from './components/NotFound.js';
+import Profile from './components/Profile.js';
+import RecipeList from './components/RecipeList.js';
+import Recipes from './components/Recipes.js';
 
-import users from './reducers/users';
-import recipes from './reducers/recipes';
+import { users } from './reducers/users.js';
+import { recipe } from './reducers/recipes.js';
 
 const reducer = combineReducers({
 	user: users.reducer,
-	recipes: recipes.reducer,
+	recipe: recipe.reducer,
 });
 
 const store = configureStore({ reducer });
@@ -41,23 +41,3 @@ const App = () => {
 	);
 };
 export default App;
-
-// const App = () => {
-// 	return (
-// 		<div className='App'>
-// 			<header className='App-header'>
-// 				<img src={logo} className='App-logo' alt='logo' />
-// 				<p>
-// 					Edit <code>src/App.js</code> and save to reload.
-// 				</p>
-// 				<a
-// 					className='App-link'
-// 					href='https://reactjs.org'
-// 					target='_blank'
-// 					rel='noopener noreferrer'>
-// 					Learn React
-// 				</a>
-// 			</header>
-// 		</div>
-// 	);
-// };
