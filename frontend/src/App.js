@@ -11,6 +11,7 @@ import NotFound from './components/NotFound.js';
 import Profile from './components/Profile.js';
 import RecipeList from './components/RecipeList.js';
 import Recipes from './components/Recipes.js';
+import { HeaderMenu } from './components/Header.js';
 
 import { users } from './reducers/users.js';
 import { recipe } from './reducers/recipes.js';
@@ -27,6 +28,7 @@ const App = () => {
 		<Provider store={store}>
 			{/*Provider can also be inside browser router*/}
 			<BrowserRouter>
+				<HeaderMenu />
 				<Routes>
 					{/*Works in similar way as switch*/}
 					<Route path='/' element={<RecipeList />} />

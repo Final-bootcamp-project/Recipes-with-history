@@ -1,4 +1,5 @@
 import { Recipe } from '../models/Recipe.js';
+import mongoose from 'mongoose-random'
 
 	// get 10 random recipes
 	export const recipeList = async (req, res)=> {

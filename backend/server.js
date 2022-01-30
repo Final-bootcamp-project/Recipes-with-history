@@ -44,8 +44,10 @@ app.get('/endpoints', async (req, res) => {
 app.post('/signup', signUp);
 app.post('/signin', signIn);
 
-//---------- RECIPE ENDPOINTS, GET
+//---------- VIEW RANDOM RECIPES ENDPOINT, GET
 app.get('/recipelist', recipeList); // all recipes
+
+//---------- RECIPE ENDPOINTS, GET
 app.get('/recipes', authenticateUser, findRecipes); //recipes per user
 
 //---------- RECIPE ENDPOINTS, POST

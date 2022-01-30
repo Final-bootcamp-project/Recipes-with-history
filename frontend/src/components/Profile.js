@@ -10,10 +10,10 @@ height: 700px;
 border: 3px solid grey;
 `
 
-useDispatch
+
 
 const Profile = () => {
-//const dispatch = ()
+  const dispatch = useDispatch()
 
   return (
   <ProfileWrapper>

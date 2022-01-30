@@ -5,9 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 const RecipeList = () => {
   return (
     <div>
-      <p>
-        
-        </p>
+      <p>HEJ</p>
     </div>
   )
 };

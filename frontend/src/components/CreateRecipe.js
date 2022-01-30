@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch, batch } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import styled from "styled-components";
+// import { useNavigate, Link } from 'react-router-dom';
+// import styled from "styled-components";
 
 import { Container } from "./styling/Section.js";
 import { Form } from "./styling/Form.js";
+import { Label } from "./styling/Label.js";
 
 import { recipe, postRecipe } from "../reducers/recipes.js";
 
@@ -13,13 +14,13 @@ const AddRecipe = () => {
   const [title, setTitle] = useState("");
   const [cookingSteps, setCookingSteps] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [recipe, setRecipe] = useState("");
+  
 
 
   const accessToken = useSelector((store) => store.user.accessToken);
   const userId = useSelector((store) => store.user.userId);
 
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
   const onPostRecipe = (accessToken, userId, recipe) => {
     dispatch(postRecipe(accessToken, userId, recipe));

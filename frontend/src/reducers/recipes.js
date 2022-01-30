@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 // Imported user reducer
 // import { setUserId, setAccessToken } from './user';
-// import { API_URL } from "utils/urls";
+import { API_URL } from "../utils/urls";
 
 export const recipe = createSlice({
   name: "recipe",
@@ -42,8 +42,8 @@ export const recipe = createSlice({
 })
 
 // Thunk fetchRecipes: getting users recipes
-
 // Fetch user recipes for profile?????!!!! 
+
 export const fetchRecipes = (accessToken, userId) => {
   return (dispatch) => {
     const options = {
