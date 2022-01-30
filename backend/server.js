@@ -7,7 +7,7 @@ import listEndpoints from 'express-list-endpoints';
 
 import { signUp } from './endpoints/signup.js';
 import { signIn } from './endpoints/signIn.js';
-import { recipeList } from './endpoints/recipeList.js';
+import { recipeList, allRecipes } from './endpoints/recipeList.js';
 import { addRecipe } from './endpoints/addRecipe.js';
 import { findRecipes } from './endpoints/findRecipes.js';
 import { likeRecipe } from './endpoints/likeRecipe.js';

@@ -17,7 +17,7 @@ export const HeaderMenu = () => {
   return(
     <>
     <Header>
-    <NavBar />
+    {/* <NavBar /> */}
     </Header>
   </>
   )

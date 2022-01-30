@@ -3,18 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 // import { setUserId, setAccessToken } from './user';
 import { API_URL } from "../utils/urls";
 
+import { users } from './users.js'
+
 export const recipe = createSlice({
   name: "recipe",
   initialState: {
-    items: {
-    title: null,
-    ingredients: null,
-    cookingSteps: null,
-    category: null,
-    likes: null,
-    uploadedBy: null,
-    recipeCreator: null,
-    },
+    items: [],
     error: null,
   },
   reducers: {
@@ -68,7 +62,27 @@ export const fetchRecipes = (accessToken, userId) => {
 };
 
 // Fetch all recipes. Same as above but just /recipes?
+export const fetchGuestRecipes = () => {
+  return (dispatch) => {
 
+    fetch('http://localhost:8090') //denna behöver läggas till
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          dispatch(recipe.actions.setItems(data.response));
+          dispatch(recipe.actions.setError(null));
+        } else {
+          dispatch(recipe.actions.setItems([]));
+          dispatch(recipe.actions.setError(data.response));
+        }
+      });
+}};
+
+
+
+
+// Post new recipe
 export const postRecipe = (accessToken, userId, recipe) => {
   return (dispatch) => {
     const options = {
@@ -92,4 +106,4 @@ export const postRecipe = (accessToken, userId, recipe) => {
         }
       });
   };
-};
+}
