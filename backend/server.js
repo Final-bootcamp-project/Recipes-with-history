@@ -3,6 +3,7 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import listEndpoints from 'express-list-endpoints';
 
 import { signUp } from './endpoints/signup.js';
 import { signIn } from './endpoints/signIn.js';
@@ -13,12 +14,11 @@ import { likeRecipe } from './endpoints/likeRecipe.js';
 
 import authenticateUser from './utils/authentication.js';
 
-
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/cookbook';
 mongoose.connect(mongoUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true, //vad är det här?
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useCreateIndex: true, //vad är det här?
 });
 mongoose.Promise = Promise;
 
@@ -29,7 +29,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 //-----------------ENDPOINTS----------------------
 app.get('/', (req, res) => {
 	res.send('Welcome to Jessica and Rebeccas recipe bank!');
@@ -37,7 +36,7 @@ app.get('/', (req, res) => {
 
 //----------- ALL POSSIBLE ROUTES
 app.get('/endpoints', async (req, res) => {
-  res.send(listEndPoints(router));
+	res.send(listEndpoints(app));
 });
 
 //---------- USER ENDPOINTS
@@ -53,7 +52,6 @@ app.get('/recipes', authenticateUser, findRecipes); //recipes per user
 //---------- RECIPE ENDPOINTS, POST
 app.post('/recipes', authenticateUser, addRecipe);
 app.post('/recipes/:recipeId/like', authenticateUser, likeRecipe);
-
 
 // Start the server
 app.listen(port, () => {
