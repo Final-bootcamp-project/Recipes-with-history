@@ -1,4 +1,3 @@
-// om vi ändrar namn på projektet, kom ihåg att ändra namn i package.json!!!!
 // Ladda ner npm i mongoose-random
 import express from 'express';
 import cors from 'cors';
