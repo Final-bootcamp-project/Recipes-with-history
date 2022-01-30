@@ -1,5 +1,3 @@
-// Ladda ner npm i mongoose-random
-//test
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
@@ -44,10 +42,11 @@ app.post('/signup', signUp);
 app.post('/signin', signIn);
 
 //---------- VIEW RANDOM RECIPES ENDPOINT, GET
-app.get('/recipelist', recipeList); // all recipes
+app.get('/recipelist', recipeList); // 20 recipes for guest user
 
 //---------- RECIPE ENDPOINTS, GET
 app.get('/recipes', authenticateUser, findRecipes); //recipes per user
+app.get('/recipes', authenticateUser, allRecipes);
 
 //---------- RECIPE ENDPOINTS, POST
 app.post('/recipes', authenticateUser, addRecipe);
