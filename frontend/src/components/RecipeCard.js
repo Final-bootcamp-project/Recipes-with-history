@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
 
 import LikeButton from './LikeButton';
+import { fetchGuestRecipes } from '../reducers/recipes';
 
 const RecipeContainer = styled.div`
 	width: 100%;
@@ -16,10 +18,12 @@ const RecipeWrapper = styled.article`
   border: 3px solid hotpink;
 `;
 
-export const RecipeCard = ({ recipes, onLikesIncrease }) => {
+export const RecipeCard = ({ recipeprop }) => {
+	// fetchGuestRecipes!
+
 	return (
 		<RecipeContainer>
-			{recipes.map((recipe) => (
+			{recipeprop.map((recipe) => (
 				<RecipeWrapper key={recipe._id}>
 					<h3>{recipe.title}</h3>
 					<p>{recipe.ingredients}</p>

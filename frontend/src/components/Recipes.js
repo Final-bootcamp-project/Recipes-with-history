@@ -19,6 +19,10 @@ const Recipes = () => {
   return(
     <>
     <AddRecipe />
+
+    {/* search function, filter on liked recipes 
+      all recipes uploaded, desc */}
+      
     </>
     )
 

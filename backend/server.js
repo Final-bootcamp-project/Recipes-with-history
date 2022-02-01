@@ -9,6 +9,7 @@ import { recipeList, allRecipes } from './endpoints/recipeList.js';
 import { addRecipe } from './endpoints/addRecipe.js';
 import { findRecipes } from './endpoints/findRecipes.js';
 import { likeRecipe } from './endpoints/likeRecipe.js';
+import { userRecipes } from './endpoints/userRecipes.js';
 
 import authenticateUser from './utils/authentication.js';
 
@@ -28,9 +29,11 @@ app.use(cors());
 app.use(express.json());
 
 //-----------------ENDPOINTS----------------------
-app.get('/', (req, res) => {
-	res.send('Welcome to Jessica and Rebeccas recipe bank!');
-});
+// app.get('/', (req, res) => {
+// 	res.send('Welcome to Jessica and Rebeccas recipe bank!');
+// });
+
+app.get('/', recipeList)
 
 //----------- ALL POSSIBLE ROUTES
 app.get('/endpoints', async (req, res) => {
@@ -40,6 +43,7 @@ app.get('/endpoints', async (req, res) => {
 //---------- USER ENDPOINTS
 app.post('/signup', signUp);
 app.post('/signin', signIn);
+app.get('/profile/:userID', userRecipes); //authenticateUser
 
 //---------- VIEW RANDOM RECIPES ENDPOINT, GET
 app.get('/recipelist', recipeList); // 20 recipes for guest user
@@ -51,6 +55,8 @@ app.get('/recipes', authenticateUser, allRecipes);
 //---------- RECIPE ENDPOINTS, POST
 app.post('/recipes', authenticateUser, addRecipe);
 app.post('/recipes/:recipeId/like', authenticateUser, likeRecipe);
+
+
 
 // Start the server
 app.listen(port, () => {

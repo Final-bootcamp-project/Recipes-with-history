@@ -10,6 +10,11 @@ return (
   <>
 
   <HeaderMenu />
+
+  {/* Form to sign up 
+      button to submit
+      footer
+  */}
   
 
 </>

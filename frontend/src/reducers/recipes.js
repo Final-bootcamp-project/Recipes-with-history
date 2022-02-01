@@ -80,8 +80,6 @@ export const fetchGuestRecipes = () => {
 }};
 
 
-
-
 // Post new recipe
 export const postRecipe = (accessToken, userId, recipe) => {
   return (dispatch) => {
