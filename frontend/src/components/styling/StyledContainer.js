@@ -7,5 +7,7 @@ export const StyledContainer = styled.section`
 	align-items: center;
 	/* min-height: 100vh; */
 	background-color: whitesmoke;
-	margin-bottom: 20px;
+	gap: 20px;
+	margin: 10px auto;
+	padding: 20px;
 `;

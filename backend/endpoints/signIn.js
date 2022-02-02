@@ -1,4 +1,5 @@
 import { User } from '../models/User.js';
+import bcrypt from 'bcrypt'
 
 export const signIn = async (req, res) => {
 	const { username, password } = req.body; //object destructuring

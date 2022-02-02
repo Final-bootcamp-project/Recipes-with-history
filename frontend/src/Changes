@@ -1,0 +1,36 @@
+
+
+Jessica: Frontend
+
+NotFound.js:
+  - added h1 and info for user
+
+styled components:
+  - StyledInput, StyledForm and StyledButton
+
+Homepage.js:
+  - switched position of props(recipes and recipeprop)
+
+Signup/Signin:
+  - edited to self-closing tags for input and made right naming of payload to make recipelist show
+
+
+
+Rebecca: 
+
+Button.js:
+  - Log out functionality
+
+Recipes.js:
+  - see commented out code
+
+users.js:
+  - see comment
+
+styled components:
+  - changed names for better practice
+
+SignUp.js:
+  - see comment
+
+

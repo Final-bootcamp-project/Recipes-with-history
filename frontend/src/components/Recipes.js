@@ -5,22 +5,15 @@ import { useSelector, useDispatch, batch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 
 import AddRecipe from './CreateRecipe';
+import LoadingAnimation from './Loader';
 
 import { API_URL } from '../utils/urls';
 
 const Recipes = () => {
-	const [recipes, setRecipes] = useState('');
-
-	// const fetchRecipes = () => {
-	// 	fetch('http://localhost:8090/recipes')
-	// 		.then((res) => res.json())
-	// 		.then((data) => setRecipes(data));
-	// };
-
-	// ------------- Rebeccas add
 	const navigate = useNavigate();
 	const accessToken = useSelector((store) => store.user.accessToken);
-	// const dispatch = useDispatch();
+	const loading = useSelector((store) => store.loading.loading);
+	const recipes = useSelector((store) => store.recipes.items);
 
 	useEffect(() => {
 		if (!accessToken) {
@@ -44,20 +37,11 @@ const Recipes = () => {
 					setRecipes(data.response.recipe);
 					// recipes = fetched data;
 				}
-			});
+			})
 	}, [accessToken]);
 
-	// Log out function. Clears all user details from store.
-	// const logout = () => {
-	// 	batch(() => {
-	// 		dispatch(user.actions.setUsername(null));
-	// 		dispatch(user.actions.setUserId(null));
-	// 		dispatch(user.actions.setAccessToken(null));
-	// 		dispatch(user.actions.setError(null));
-	// 	});
-	// };
-
 	return (
+		loading === false && (
 		<>
 			<AddRecipe />
 
@@ -65,6 +49,7 @@ const Recipes = () => {
       all recipes uploaded, desc */}
 			{/*    <StyledButton onClick={() => logout()}>Log out</StyledButton> */}
 		</>
+	)
 	);
 };
 

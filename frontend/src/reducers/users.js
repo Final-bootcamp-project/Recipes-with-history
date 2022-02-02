@@ -4,10 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 export const users = createSlice({
 	name: 'users',
 	initialState: {
-		userId: null,
-		username: null,
-		email: null,
-		accessToken: null,
+		items: [],
+		errors: null,
 	},
 	reducers: {
 		//this is built as an object, so we construct its properties, inside

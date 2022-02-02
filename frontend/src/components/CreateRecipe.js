@@ -36,21 +36,21 @@ const AddRecipe = () => {
 						type='text'
 						value={title}
 						placeholder='Add title here..'
-						onChange={(event) => setTitle(event.target.value)}></input>
+						onChange={(event) => setTitle(event.target.value)}/>
 					<StyledLabel>Ingredients list </StyledLabel>
 					<input
 						id='ingredients'
 						type='text'
 						value={ingredients}
 						placeholder='Add title here..'
-						onChange={(event) => setIngredients(event.target.value)}></input>
+						onChange={(event) => setIngredients(event.target.value)}/>
 					<StyledLabel>Cooking steps </StyledLabel>
 					<input
 						id='cookingSteps'
 						type='text'
 						value={cookingSteps}
 						placeholder='Add title here..'
-						onChange={(event) => setCookingSteps(event.target.value)}></input>
+						onChange={(event) => setCookingSteps(event.target.value)}/>
 					<button
 						type='submit'
 						onClick={() => onPostRecipe(accessToken, userId, recipe)}>

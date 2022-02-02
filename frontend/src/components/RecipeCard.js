@@ -19,8 +19,6 @@ const RecipeWrapper = styled.article`
 `;
 
 export const RecipeCard = ({ recipeprop }) => {
-	// fetchGuestRecipes!
-
 	return (
 		<RecipeContainer>
 			{recipeprop.map((recipe) => (

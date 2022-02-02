@@ -1,7 +1,7 @@
 import React from 'react';
-import { useSelector, useDispatch, batch } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
 
-const NotFound = () => {};
+const NotFound = () => {
+  return <h1>Not found... please go to another page for delicious recipes! </h1>;
+};
 
 export default NotFound;

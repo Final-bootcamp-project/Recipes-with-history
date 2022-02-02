@@ -1,4 +1,4 @@
-export const API_URL = 'http://localhost:8090';
+export const API_URL = (slug) => `http://localhost:8090/${slug}`;
 
-// export const LIKES_URL = (thoughtId) =>
-// 	`https://britishswede-happy-thought-api.herokuapp.com/thoughts/${thoughtId}/like`;
+// export const LIKES_URL = (likeId) =>
+// 	`https://here-we-will-put-our-heroku-adress.herokuapp.com/${likeId}/like`;

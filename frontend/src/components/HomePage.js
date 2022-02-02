@@ -20,7 +20,7 @@ const HomePage = ({ recipeprop }) => {
 	return (
 			<div>
 				{/* intro/welcome text */}
-				<RecipeCard recipes={recipeprop} />
+				<RecipeCard recipeprop={recipes} />
 				<p>HERE WE WANT TO DISPLAY 20 RECIPES, FOR GUESTS</p>
 			</div>
 	);

@@ -2,17 +2,11 @@ import styled from 'styled-components';
 
 export const StyledButton = styled.button`
 	width: 50px;
-	background-color: black;
-	border-radius: 15%;
+	background-color: #69707e;
+	border-radius: 10px;
 	color: whitesmoke;
+	padding: 10px 5px;
+	width: 80px;
+	border: none;
 `;
 
-// const logout = () => {
-//   batch(() => {
-//     dispatch(user.actions.setUsername(null));
-//     dispatch(user.actions.setUserId(null));
-//     dispatch(user.actions.setAccessToken(null));
-//     dispatch(user.actions.setError(null));
-//   });
-// };
-// <Button onClick={() => logout()}>Log out</Button> */

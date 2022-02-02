@@ -16,10 +16,13 @@ import { HeaderMenu } from './components/Header.js';
 
 import { users } from './reducers/users.js';
 import { recipe } from './reducers/recipes.js';
+import { loading } from './reducers/loading.js';
+import LoadingAnimation from './components/Loader.js';
 
 const reducer = combineReducers({
 	user: users.reducer,
 	recipe: recipe.reducer,
+	loading: loading.reducer
 });
 
 const store = configureStore({ reducer });
@@ -29,6 +32,7 @@ const App = () => {
 		<Provider store={store}>
 			{/*Provider can also be inside browser router*/}
 			<BrowserRouter>
+				<LoadingAnimation />
 				<HeaderMenu />
 				<Routes>
 					{/*Works in similar way as switch*/}

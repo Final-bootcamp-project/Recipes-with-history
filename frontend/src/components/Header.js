@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { NavBar } from './Hamburger';
+import { StyledNavBar } from './styling/StyledNavBar';
 
 const Header = styled.header`
 display: flex;
@@ -13,11 +13,13 @@ background-color: lightblue;
 color: white;
 `;
 
+
+
 export const HeaderMenu = () => {
   return(
     <>
     <Header>
-    {/* <NavBar /> */}
+    <StyledNavBar />
     </Header>
   </>
   )
