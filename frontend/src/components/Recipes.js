@@ -8,6 +8,7 @@ import AddRecipe from './CreateRecipe';
 import LoadingAnimation from './Loader';
 // import { fetchRecipes } from '../reducers/recipes';
 import { RecipeCard } from './RecipeCard';
+import { recipe } from '../reducers/recipes';
 
 import { API_URL } from '../utils/urls';
 
@@ -15,7 +16,7 @@ const Recipes = () => {
 	const navigate = useNavigate();
 	const accessToken = useSelector((store) => store.user.accessToken);
 	const loading = useSelector((store) => store.loading.loading);
-	const recipes = useSelector((store) => store.recipes.items);
+	const recipes = useSelector((store) => store.recipe.items);
 	const dispatch = useDispatch();
 
 	useEffect(() => {

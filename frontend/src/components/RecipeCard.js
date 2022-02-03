@@ -20,7 +20,7 @@ const RecipeWrapper = styled.article`
 export const RecipeCard = ({ recipeprop }) => {
 	return (
 		<RecipeContainer>
-			{recipeprop.map((recipe) => (
+			{recipeprop.response?.map((recipe) => (
 				<RecipeWrapper key={recipe._id}>
 					<h3>{recipe.title}</h3>
 					<p>{recipe.ingredients}</p>
