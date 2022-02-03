@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
 
-import LikeButton from './LikeButton';
-import { fetchGuestRecipes } from '../reducers/recipes';
+//import LikeButton from './LikeButton';
 
 const RecipeContainer = styled.div`
 	width: 100%;
@@ -14,7 +13,7 @@ const RecipeContainer = styled.div`
 const RecipeWrapper = styled.article`
 	width: 40%;
 	height: 500px;
-	margin: 15px auto;
+	margin: 15px;
   border: 3px solid hotpink;
 `;
 

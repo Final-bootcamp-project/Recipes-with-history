@@ -34,7 +34,6 @@ const SignIn = () => {
 	};
 
 	const login = () => {
-
 		fetch(('http://localhost:8090/signin'), {
 			method: 'POST',
 			headers: {

@@ -1,9 +1,8 @@
 import React from 'react'
 import Lottie from 'react-lottie'
-import animationData from './assets/LoaderAnimation.json'
+import LoadAnimation from './assets/LoadAnimation.json'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-
 
 //styling of components: used "parent" absolute and "child" relative, to make the spinner appear where we wanted it
 const Section = styled.section`
@@ -22,7 +21,7 @@ const LoadingAnimation = () => {
     const defaultOptions = {
         loop: true,
     autoplay: true,
-    animationData,
+    LoadAnimation,
     rendererSettings: {
         preserveAspectRatio: "xMidYMid slice"
     }

@@ -7,25 +7,55 @@ import { StyledContainer } from './styling/StyledContainer.js';
 import { StyledForm } from './styling/StyledForm.js';
 import { StyledLabel } from './styling/StyledLabel.js';
 
-import { recipe, postRecipe } from '../reducers/recipes.js';
+import { recipe } from '../reducers/recipes.js';
+import { API_URL } from '../utils/urls.js';
 
 // ----------- ADD RECIPE TO
 
-const AddRecipe = () => {
+const CreateRecipe = () => {
 	const [recipe, setRecipe] = useState('');
 	const [title, setTitle] = useState('');
 	const [cookingSteps, setCookingSteps] = useState('');
 	const [ingredients, setIngredients] = useState('');
 
+	const loading = useSelector((store) => store.loading.loading);
+	// const recipes = useSelector((store) => store.recipes.items);
 	const accessToken = useSelector((store) => store.user.accessToken);
 	const userId = useSelector((store) => store.user.userId);
 
 	const dispatch = useDispatch();
 
+
+	const postRecipe = (accessToken, userId, recipe) => {
+		return (dispatch) => {
+			const options = {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: accessToken,
+				},
+				body: JSON.stringify({ recipe, user: userId }),
+			};
+			fetch(API_URL("/recipes/"), options)
+				.then((res) => res.json())
+				.then((data) => {
+					if (data.success) {
+						console.log(data);
+						dispatch(postRecipe(accessToken, userId));
+						dispatch(recipe.actions.setError(null));
+					} else {
+						dispatch(recipe.actions.setItems([]));
+						dispatch(recipe.actions.setError(data.response));
+					}
+				});
+		};
+	}
 	const onPostRecipe = (accessToken, userId, recipe) => {
 		dispatch(postRecipe(accessToken, userId, recipe));
 		setRecipe(''); // clears the input
 	};
+
+	
 	return (
 		<StyledContainer>
 			<div>
@@ -62,4 +92,4 @@ const AddRecipe = () => {
 	);
 };
 
-export default AddRecipe;
+export default CreateRecipe;
