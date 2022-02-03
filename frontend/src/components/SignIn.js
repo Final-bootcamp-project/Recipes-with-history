@@ -18,9 +18,9 @@ const SignIn = () => {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	
+
 	const accessToken = useSelector((store) => store.user.accessToken);
-	const loading = useSelector((store) => store.loading.loading)
+	const loading = useSelector((store) => store.loading);
 
 	useEffect(() => {
 		if (accessToken) {
@@ -34,7 +34,7 @@ const SignIn = () => {
 	};
 
 	const login = () => {
-		fetch(('http://localhost:8090/signin'), {
+		fetch('http://localhost:8090/signin', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ const SignIn = () => {
 					});
 					navigate('/recipes');
 				} else {
-					dispatch(users.actions.setUserId(null)); 
+					dispatch(users.actions.setUserId(null));
 					dispatch(users.actions.setUsername(null));
 					dispatch(users.actions.setAccessToken(null));
 					dispatch(users.actions.setError(json.response));
@@ -66,23 +66,27 @@ const SignIn = () => {
 	return (
 		//loading === false && (
 		<StyledForm onSubmit={(event) => handleSubmit(event)}>
-			<StyledLabel htmlFor='usernameInput'>Username
+			<StyledLabel htmlFor='usernameInput'>
+				Username
 				<StyledInput
-					id='usernameInput'					
+					id='usernameInput'
 					type='text'
 					value={username}
-					onChange={(event) => setUsername(event.target.value)} />
-			</StyledLabel >
-			<StyledLabel htmlFor='passwordInput'>Password
+					onChange={(event) => setUsername(event.target.value)}
+				/>
+			</StyledLabel>
+			<StyledLabel htmlFor='passwordInput'>
+				Password
 				<StyledInput
 					id='passwordInput'
 					type='password'
 					value={password}
-					onChange={(event) => setPassword(event.target.value)} />
+					onChange={(event) => setPassword(event.target.value)}
+				/>
 			</StyledLabel>
 			<StyledButton type='submit'>Sign in </StyledButton>
 		</StyledForm>
-	)//)
+	); //)
 };
 
 export default SignIn;

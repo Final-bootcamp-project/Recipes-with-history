@@ -14,13 +14,13 @@ const RecipeWrapper = styled.article`
 	width: 40%;
 	height: 500px;
 	margin: 15px;
-  border: 3px solid hotpink;
+	border: 3px solid hotpink;
 `;
 
 export const RecipeCard = ({ recipeprop }) => {
 	return (
 		<RecipeContainer>
-			{recipeprop.response?.map((recipe) => (
+			{recipeprop.map((recipe) => (
 				<RecipeWrapper key={recipe._id}>
 					<h3>{recipe.title}</h3>
 					<p>{recipe.ingredients}</p>

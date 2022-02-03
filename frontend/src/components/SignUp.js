@@ -26,38 +26,38 @@ const SignUp = () => {
 		createUser();
 	};
 
-	const createUser = () => {		
-		const options = { 
+	const createUser = () => {
+		const options = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({ name, username, password, email }),
-		}
-		
+		};
+
 		fetch('http://localhost:8090/signup', options)
 			.then((response) => response.json())
 			.then((json) => {
-				if(json.success){
+				if (json.success) {
 					batch(() => {
 						dispatch(users.actions.setUsername(json.response.username));
 						dispatch(users.actions.setName(json.response.name));
 						dispatch(users.actions.setAccessToken(json.response.accessToken));
 						dispatch(users.actions.setError(null));
-					})
+					});
 					setUserCreated(true);
 				} else {
-						batch(() => {
+					batch(() => {
 						dispatch(users.actions.setUsername(null));
 						dispatch(users.actions.setName(null));
 						dispatch(users.actions.setAccessToken(null));
 						dispatch(users.actions.setError(json.response));
-						})
-					}
+					});
+				}
 			});
-		}
+	};
 
-		return (
+	return (
 		<>
 			{userCreated ? (
 				<StyledForm>
@@ -69,15 +69,14 @@ const SignUp = () => {
 			) : (
 				<div>
 					<StyledForm onSubmit={(event) => handleSubmit(event)}>
-						
-					<label htmlFor='nameInput'>name:</label>
+						<label htmlFor='nameInput'>name:</label>
 						<StyledInput
 							id='nameInput'
 							type='text'
 							value={name}
 							onChange={(event) => setName(event.target.value)}
 						/>
-						
+
 						<label htmlFor='usernameInput'>username:</label>
 						<StyledInput
 							id='usernameInput'

@@ -5,10 +5,10 @@ export const users = createSlice({
 	name: 'users',
 	initialState: {
 		userId: null,
-    name: null,
-    username: null,
-    accessToken: null,
-    error: null,
+		name: null,
+		username: null,
+		accessToken: null,
+		error: null,
 	},
 	reducers: {
 		//this is built as an object, so we construct its properties, inside
