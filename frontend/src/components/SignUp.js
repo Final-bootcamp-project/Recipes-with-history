@@ -9,46 +9,75 @@ import { API_URL } from '../utils/urls.js';
 
 import { StyledForm } from './styling/StyledForm.js';
 import { StyledInput } from './styling/StyledInput.js';
+import { StyledButton } from './styling/StyledButton.js';
 
 const SignUp = () => {
+	const [name, setName] = useState('');
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [userCreated, setUserCreated] = useState(false);
-	const [userData, setUserData] = useState({});
+	const user = useSelector((store) => store.username);
+
+	const dispatch = useDispatch();
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		createUser();
 	};
 
-	const createUser = () => {
-		fetch(API_URL('/signup'), {
+	const createUser = () => {		
+		const options = { 
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ username, password, email }),
-		})
+			body: JSON.stringify({ name, username, password, email }),
+		}
+		
+		fetch('http://localhost:8090/signup', options)
 			.then((response) => response.json())
 			.then((json) => {
-				setUserData(json.response);
-				setUserCreated(true);
+				if(json.success){
+					batch(() => {
+						dispatch(users.actions.setUsername(json.response.username));
+						dispatch(users.actions.setName(json.response.name));
+						dispatch(users.actions.setAccessToken(json.response.accessToken));
+						dispatch(users.actions.setError(null));
+					})
+					setUserCreated(true);
+				} else {
+						batch(() => {
+						dispatch(users.actions.setUsername(null));
+						dispatch(users.actions.setName(null));
+						dispatch(users.actions.setAccessToken(null));
+						dispatch(users.actions.setError(json.response));
+						})
+					}
 			});
-	};
+		}
 
-	return (
+		return (
 		<>
 			{userCreated ? (
 				<StyledForm>
-					<p>User {userData.name} created!</p>
+					<p>Welcome {username}!</p>
 					<p>
-						Click <Link to='/login'>here</Link> to login!
+						Click <Link to='/signin'>here</Link> to login!
 					</p>
 				</StyledForm>
 			) : (
 				<div>
 					<StyledForm onSubmit={(event) => handleSubmit(event)}>
+						
+					<label htmlFor='nameInput'>name:</label>
+						<StyledInput
+							id='nameInput'
+							type='text'
+							value={name}
+							onChange={(event) => setName(event.target.value)}
+						/>
+						
 						<label htmlFor='usernameInput'>username:</label>
 						<StyledInput
 							id='usernameInput'
@@ -72,21 +101,10 @@ const SignUp = () => {
 							value={password}
 							onChange={(event) => setPassword(event.target.value)}
 						/>
-						<button type='submit'>Create user</button>
+						<StyledButton type='submit'>Create user</StyledButton>
 					</StyledForm>
 				</div>
 			)}
-		</>
-	);
-
-	return (
-		<>
-			<HeaderMenu />
-
-			{/* Form to sign up
-	    button to submit
-	    footer
-	*/}
 		</>
 	);
 };

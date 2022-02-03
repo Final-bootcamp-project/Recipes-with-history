@@ -50,7 +50,7 @@ const SignIn = () => {
 						dispatch(users.actions.setAccessToken(json.response.accessToken));
 						dispatch(users.actions.setError(null));
 					});
-					navigate('/');
+					navigate('/recipes');
 				} else {
 					dispatch(users.actions.setUserId(null)); 
 					dispatch(users.actions.setUsername(null));
@@ -64,7 +64,7 @@ const SignIn = () => {
 	};
 
 	return (
-		loading === false && (
+		//loading === false && (
 		<StyledForm onSubmit={(event) => handleSubmit(event)}>
 			<StyledLabel htmlFor='usernameInput'>Username
 				<StyledInput
@@ -80,9 +80,9 @@ const SignIn = () => {
 					value={password}
 					onChange={(event) => setPassword(event.target.value)} />
 			</StyledLabel>
-			<StyledButton type='submit'>Submit </StyledButton>
+			<StyledButton type='submit'>Sign in </StyledButton>
 		</StyledForm>
-	))
+	)//)
 };
 
 export default SignIn;

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 
-import AddRecipe from './CreateRecipe';
+import CreateRecipe from './CreateRecipe';
 import LoadingAnimation from './Loader';
 // import { fetchRecipes } from '../reducers/recipes';
 import { RecipeCard } from './RecipeCard';
@@ -53,9 +53,9 @@ const Recipes = () => {
 	
 
 	return (
-	loading === false && (
+	//loading === false && (
 		<>
-			<AddRecipe />
+			<CreateRecipe />
 			<RecipeCard recipeprop={recipes} />
 
 			{/* search function, filter on liked recipes 
@@ -63,7 +63,7 @@ const Recipes = () => {
 			{/*    <StyledButton onClick={() => logout()}>Log out</StyledButton> */}
 		</>
 	)
-	);
+	//);
 };
 }
 export default Recipes;

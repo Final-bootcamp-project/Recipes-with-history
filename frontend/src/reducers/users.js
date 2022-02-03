@@ -4,8 +4,11 @@ import { createSlice } from '@reduxjs/toolkit';
 export const users = createSlice({
 	name: 'users',
 	initialState: {
-		items: [],
-		errors: null,
+		userId: null,
+    name: null,
+    username: null,
+    accessToken: null,
+    error: null,
 	},
 	reducers: {
 		//this is built as an object, so we construct its properties, inside
@@ -22,6 +25,9 @@ export const users = createSlice({
 		},
 		setUserId: (store, action) => {
 			store.userId = action.payload;
+		},
+		setName: (store, action) => {
+			store.name = action.payload;
 		},
 		setUsername: (store, action) => {
 			store.username = action.payload;
