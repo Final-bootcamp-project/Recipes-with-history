@@ -26,7 +26,7 @@ const HomePage = () => {
         if (data.success) {
           dispatch(recipe.actions.setRecipe(data.response));
           dispatch(recipe.actions.setError(null));
-					console.log(data.response)
+					//console.log(data.response)
         } else {
           dispatch(recipe.actions.setRecipe([]));
           dispatch(recipe.actions.setError(data.response));
@@ -34,13 +34,14 @@ const HomePage = () => {
       });
 	}
 	return (
-		loading === false && (
+		//loading === false && (
 			<div>
 				{/* intro/welcome text */}
 				<RecipeCard recipeprop={recipes} />
 				<p>HERE WE WANT TO DISPLAY 20 RECIPES, FOR GUESTS</p>
 			</div>
-	));
+	//)
+	);
 };
 
 export default HomePage;

@@ -2,8 +2,6 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { ChakraProvider } from '@chakra-ui/react'
-
 
 import SignIn from './components/SignIn.js';
 import SignUp from './components/SignUp.js';
@@ -34,7 +32,6 @@ const App = () => {
 		<Provider store={store}>
 			{/*Provider can also be inside browser router*/}
 			<BrowserRouter>
-			<ChakraProvider>
 				{/* <LoadingAnimation /> */}
 				<HeaderMenu />
 				<Routes>
@@ -46,7 +43,6 @@ const App = () => {
 					<Route path='/profile' element={<Profile />} />
 					<Route path='*' element={<NotFound />} />
 				</Routes>
-				</ChakraProvider>
 			</BrowserRouter>
 		</Provider>
 	);
