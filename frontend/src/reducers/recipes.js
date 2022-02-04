@@ -11,6 +11,14 @@ export const recipe = createSlice({
   name: "recipe",
   initialState: {
     items: [],
+    title: null,
+    ingredients: null,
+    category: null,
+    cookingSteps: null,
+    isLiked: false,
+    createdAt: null,
+    uploadedBy: null,
+    recipeCreator: null,
     error: null,
   },
   reducers: {
@@ -22,16 +30,37 @@ export const recipe = createSlice({
 				text: data,
 				isLiked: false,
 			};
-			store.items = [...store.items, newRecipe];
+			//store.items = [...store.items, newRecipe];
 		},
     setRecipe: (store, action) => {
       store.items = action.payload;
+    },
+    setTitle: (store, action) => {
+      store.title = action.payload;
+    },
+    setIngredients: (store, action) => {
+      store.ingredients = action.payload;
+    },
+    setCategory: (store, action) => {
+      store.category = action.payload;
+    },
+    setCookingSteps: (store, action) => {
+      store.cookingSteps = action.payload;
+    },
+    setCreatedAt: (store, action) => {
+      store.createdAt = action.payload;
+    },
+    setUploadedBy: (store, action) => {
+      store.uploadedBy = action.payload;
+    },
+    setRecipeCreator: (store, action) => {
+      store.recipeCreator = action.payload;
     },
     setError: (store, action) => {
       store.error = action.payload;
     },
     toggleRecipe: (store, action) => { //this will display if the like is true or false
-      const updatedRecipeLike = store.items.map((recipe) => {
+      const updatedRecipeLike = store.isLiked.map((recipe) => {
         if (recipe.id === action.payload) {
           const updatedLike = {
             ...recipe, 
@@ -42,7 +71,7 @@ export const recipe = createSlice({
           return recipe;
         }
       })
-      store.items = updatedRecipeLike;
+      //store.items = updatedRecipeLike;
     } 
   }
 })

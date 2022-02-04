@@ -30,10 +30,11 @@ export const RecipeCard = ({ recipeprop }) => {
 					{/* <div>
 						<LikeButton onLikesIncrease={onLikesIncrease} recipe={recipe} /> x{' '}
 						{recipe.likes}
-					</div> */}
+					</div>  */}
 					<p>{moment(recipe.createdAt).fromNow()}</p>
 				</RecipeWrapper>
 			))}
+			hello world
 		</RecipeContainer>
 	);
 };

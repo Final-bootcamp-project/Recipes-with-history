@@ -9,10 +9,9 @@ import { recipe } from '../reducers/recipes';
 //import { API_URL } from '../utils/urls.js';
 
 const HomePage = () => {
-
+	//const loading = useSelector((store) => store.loading.loading);
 	const dispatch = useDispatch();
-	const loading = useSelector((store) => store.loading.loading);
-	const recipes = useSelector((store) => store.recipe.items.length);
+	const recipes = useSelector((store) => store.recipe.items);
 
 	useEffect(() => {
 		fetchGuestRecipes();
@@ -22,13 +21,13 @@ const HomePage = () => {
     fetch("http://localhost:8090/recipelist") 
       .then((res) => res.json())
       .then((data) => {
-        //console.log(data);
+        //console.log(data.response);
         if (data.success) {
           dispatch(recipe.actions.setRecipe(data.response));
           dispatch(recipe.actions.setError(null));
-					//console.log(data.response)
+						console.log(data.response)
         } else {
-          dispatch(recipe.actions.setRecipe([]));
+          dispatch(recipe.actions.setRecipe(null));
           dispatch(recipe.actions.setError(data.response));
         }
       });
