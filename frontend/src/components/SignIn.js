@@ -24,7 +24,7 @@ const SignIn = () => {
 
 	useEffect(() => {
 		if (accessToken) {
-			navigate('/');
+			navigate('/recipes');
 		}
 	}, [accessToken, navigate]);
 
@@ -34,13 +34,14 @@ const SignIn = () => {
 	};
 
 	const login = () => {
-		fetch('http://localhost:8090/signin', {
+		const options = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({ username, password }),
-		})
+		};
+		fetch(API_URL('/signin'), options)
 			.then((res) => res.json())
 			.then((json) => {
 				if (json.success) {
@@ -50,6 +51,7 @@ const SignIn = () => {
 						dispatch(users.actions.setAccessToken(json.response.accessToken));
 						dispatch(users.actions.setError(null));
 					});
+					console.log(json.response);
 					navigate('/recipes');
 				} else {
 					dispatch(users.actions.setUserId(null));
@@ -59,7 +61,7 @@ const SignIn = () => {
 				}
 			})
 			.catch((error) => {
-				console.error('Error:', error);
+				console.error(error);
 			});
 	};
 

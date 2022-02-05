@@ -35,7 +35,7 @@ const SignUp = () => {
 			body: JSON.stringify({ name, username, password, email }),
 		};
 
-		fetch('http://localhost:8090/signup', options)
+		fetch(API_URL('/signup'), options)
 			.then((response) => response.json())
 			.then((json) => {
 				if (json.success) {
@@ -52,6 +52,7 @@ const SignUp = () => {
 						dispatch(users.actions.setName(null));
 						dispatch(users.actions.setAccessToken(null));
 						dispatch(users.actions.setError(json.response));
+						console.log(json.response);
 					});
 				}
 			});

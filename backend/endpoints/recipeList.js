@@ -6,9 +6,8 @@ export const recipeList = async (req, res) => {
 	res.status(201).json({ response: recipe, success: true });
 };
 
-
 // get all recipes in a list
 export const allRecipes = async (req, res) => {
 	const recipe = await Recipe.find().sort({ createdAt: 'desc' });
 	res.status(201).json({ response: recipe, success: true });
-}
+};

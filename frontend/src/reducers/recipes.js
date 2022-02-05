@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 // import { useDispatch } from "react-redux";
-import uniqid from 'uniqid'
+import uniqid from 'uniqid';
 // Imported user reducer
 // import { setUserId, setAccessToken } from './user';
 // import { API_URL } from "../utils/urls";
@@ -8,21 +8,21 @@ import uniqid from 'uniqid'
 // import { users } from './users.js'
 
 export const recipe = createSlice({
-  name: "recipe",
-  initialState: {
-    items: [],
-    title: null,
-    ingredients: null,
-    category: null,
-    cookingSteps: null,
-    isLiked: false,
-    createdAt: null,
-    uploadedBy: null,
-    recipeCreator: null,
-    error: null,
-  },
-  reducers: {
-    addRecipe: (store, action) => {
+	name: 'recipe',
+	initialState: {
+		items: [],
+		title: null,
+		ingredients: null,
+		category: null,
+		cookingSteps: null,
+		isLiked: false,
+		createdAt: null,
+		uploadedBy: null,
+		recipeCreator: null,
+		error: null,
+	},
+	reducers: {
+		addRecipe: (store, action) => {
 			const data = action.payload;
 
 			const newRecipe = {
@@ -32,52 +32,53 @@ export const recipe = createSlice({
 			};
 			//store.items = [...store.items, newRecipe];
 		},
-    setRecipe: (store, action) => {
-      store.items = action.payload;
-    },
-    setTitle: (store, action) => {
-      store.title = action.payload;
-    },
-    setIngredients: (store, action) => {
-      store.ingredients = action.payload;
-    },
-    setCategory: (store, action) => {
-      store.category = action.payload;
-    },
-    setCookingSteps: (store, action) => {
-      store.cookingSteps = action.payload;
-    },
-    setCreatedAt: (store, action) => {
-      store.createdAt = action.payload;
-    },
-    setUploadedBy: (store, action) => {
-      store.uploadedBy = action.payload;
-    },
-    setRecipeCreator: (store, action) => {
-      store.recipeCreator = action.payload;
-    },
-    setError: (store, action) => {
-      store.error = action.payload;
-    },
-    toggleRecipe: (store, action) => { //this will display if the like is true or false
-      const updatedRecipeLike = store.isLiked.map((recipe) => {
-        if (recipe.id === action.payload) {
-          const updatedLike = {
-            ...recipe, 
-            isLiked: !recipe.isLiked,
-          }
-          return updatedLike;
-        } else {
-          return recipe;
-        }
-      })
-      //store.items = updatedRecipeLike;
-    } 
-  }
-})
+		setRecipe: (store, action) => {
+			store.items = action.payload;
+		},
+		setTitle: (store, action) => {
+			store.title = action.payload;
+		},
+		setIngredients: (store, action) => {
+			store.ingredients = action.payload;
+		},
+		setCategory: (store, action) => {
+			store.category = action.payload;
+		},
+		setCookingSteps: (store, action) => {
+			store.cookingSteps = action.payload;
+		},
+		setCreatedAt: (store, action) => {
+			store.createdAt = action.payload;
+		},
+		setUploadedBy: (store, action) => {
+			store.uploadedBy = action.payload;
+		},
+		setRecipeCreator: (store, action) => {
+			store.recipeCreator = action.payload;
+		},
+		setError: (store, action) => {
+			store.error = action.payload;
+		},
+		toggleRecipe: (store, action) => {
+			//this will display if the like is true or false
+			const updatedRecipeLike = store.isLiked.map((recipe) => {
+				if (recipe.id === action.payload) {
+					const updatedLike = {
+						...recipe,
+						isLiked: !recipe.isLiked,
+					};
+					return updatedLike;
+				} else {
+					return recipe;
+				}
+			});
+			//store.items = updatedRecipeLike;
+		},
+	},
+});
 
 // Thunk fetchRecipes: getting users recipes
-// Fetch user recipes for profile?????!!!! 
+// Fetch user recipes for profile?????!!!!
 
 // export const fetchRecipes = (accessToken, userId) => {
 //   const dispatch = useDispatch();
@@ -87,7 +88,6 @@ export const recipe = createSlice({
 //       Authorization: accessToken,
 //     },
 //   };
-
 
 //     fetch(API_URL(`recipes/${userId}`), options) //denna behöver läggas till
 //       .then((res) => res.json())
@@ -106,7 +106,7 @@ export const recipe = createSlice({
 
 // // Fetch all recipes. Same as above but just /recipes?
 // export const fetchGuestRecipes = () => {
- 
+
 //   const dispatch = useDispatch();
 //   return (
 //     fetch('http://localhost:8090') //denna behöver läggas till

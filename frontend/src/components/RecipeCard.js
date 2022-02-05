@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
 
@@ -8,15 +8,25 @@ import moment from 'moment';
 const RecipeContainer = styled.div`
 	width: 100%;
 	padding: 20px;
+	// height: auto;
+	// width: 80%;
+	// display: flex;
+	// flex-direction: column;
+	// justify-self: center;
+	// margin: 15px;
+	// background-color: white;
+	// box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
 
 const RecipeWrapper = styled.article`
 	width: 40%;
-	height: 500px;
+	height: 300px;
 	margin: 15px;
+	padding: 10px 20px;
 	border: 3px solid hotpink;
 `;
 
+// --------------------DON'T TOUCH!! IT WORKS WITH HOMEPAGE!
 export const RecipeCard = ({ recipeprop }) => {
 	return (
 		<RecipeContainer>

@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const users = createSlice({
 	name: 'users',
 	initialState: {
+		items: [],
 		userId: null,
 		name: null,
 		username: null,

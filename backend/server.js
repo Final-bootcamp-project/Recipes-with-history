@@ -17,7 +17,7 @@ const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/cookbook';
 mongoose.connect(mongoUrl, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
-	useCreateIndex: true, //vad är det här?
+	useCreateIndex: true,
 });
 mongoose.Promise = Promise;
 
@@ -33,7 +33,7 @@ app.use(express.json());
 // 	res.send('Welcome to Jessica and Rebeccas recipe bank!');
 // });
 
-app.get('/', recipeList)
+app.get('/', recipeList);
 
 //----------- ALL POSSIBLE ROUTES
 app.get('/endpoints', async (req, res) => {
@@ -55,8 +55,6 @@ app.get('/recipes', authenticateUser, allRecipes);
 //---------- RECIPE ENDPOINTS, POST
 app.post('/recipes', authenticateUser, addRecipe);
 app.post('/recipes/:recipeId/like', authenticateUser, likeRecipe);
-
-
 
 // Start the server
 app.listen(port, () => {
