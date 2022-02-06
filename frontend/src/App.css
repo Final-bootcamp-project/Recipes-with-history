@@ -3,7 +3,8 @@
 }
 
 .App {
-	text-align: center;
+	box-sizing: border-box;
+	/* text-align: center; */
 }
 
 .App-logo {
@@ -21,9 +22,9 @@
 	background-color: #69707e;
 	min-height: 100vh;
 	display: flex;
-	flex-direction: column;
+	/* flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: center; */
 	font-size: calc(10px + 2vmin);
 	color: white;
 }
