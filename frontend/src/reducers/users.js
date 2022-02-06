@@ -24,6 +24,9 @@ export const users = createSlice({
 		deleteUser: (store, action) => {
 			store.items.splice(action.payload, 1);
 		},
+		setUser: (store, action) => {
+			store.items = action.payload;
+		},
 		setUserId: (store, action) => {
 			store.userId = action.payload;
 		},

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
-import { useDispatch, batch } from 'react-redux';
+import { useSelector, useDispatch, batch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Spin as Hamburger } from 'hamburger-react';
 
@@ -23,6 +23,7 @@ const StyledNav = styled.div`
 	display: flex;
 	flex.direction: column;
 	margin: auto 10px;
+	background: rgba(173, 216, 230, 0.5);
 `;
 
 const StyledList = styled.ul`
@@ -44,6 +45,7 @@ const StyledLink = styled(Link)`
 export const StyledNavBar = () => {
 	const dispatch = useDispatch();
 	const [isOpen, setIsOpen] = useState(false);
+	const accessToken = useSelector((store) => store.user.accessToken);
 
 	const logout = () => {
 		batch(() => {
@@ -65,9 +67,14 @@ export const StyledNavBar = () => {
 			{isOpen && (
 				<StyledList>
 					<StyledLink to='/'>Home</StyledLink>
+					{!accessToken && <StyledLink to='/signin'>Sign in</StyledLink>}
+					{/* {accessToken && (
+						<> */}
 					<StyledLink to='/recipes'>Recipes</StyledLink>
-					<StyledLink to='/'>Profile?</StyledLink>
+					<StyledLink to='`/profile/:userId`'>Profile?</StyledLink>
 					<StyledButton onClick={() => logout()}>Log out</StyledButton>
+					{/* </>
+					)} */}
 				</StyledList>
 			)}
 		</StyledNav>

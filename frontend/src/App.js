@@ -22,7 +22,7 @@ import LoadingAnimation from './components/Loader.js';
 const reducer = combineReducers({
 	user: users.reducer,
 	recipe: recipe.reducer,
-	loading: loading.reducer
+	loading: loading.reducer,
 });
 
 const store = configureStore({ reducer });
@@ -40,7 +40,7 @@ const App = () => {
 					<Route path='/signin' element={<SignIn />} />
 					<Route path='/signup' element={<SignUp />} />
 					<Route path='/recipes' element={<Recipes />} />
-					<Route path='/profile' element={<Profile />} />
+					<Route path='/profile/:userId' element={<Profile />} />
 					<Route path='*' element={<NotFound />} />
 				</Routes>
 			</BrowserRouter>

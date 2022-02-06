@@ -43,7 +43,7 @@ app.get('/endpoints', async (req, res) => {
 //---------- USER ENDPOINTS
 app.post('/signup', signUp);
 app.post('/signin', signIn);
-app.get('/profile/:userID', userRecipes); //authenticateUser
+app.get('/profile/:userId', authenticateUser, userRecipes); //authenticateUser
 
 //---------- VIEW RANDOM RECIPES ENDPOINT, GET
 app.get('/recipelist', recipeList); // 20 recipes for guest user

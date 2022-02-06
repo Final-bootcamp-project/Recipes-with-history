@@ -52,7 +52,7 @@ const SignIn = () => {
 						dispatch(users.actions.setError(null));
 					});
 					console.log(json.response);
-					navigate('/recipes');
+					navigate('/'); //should be /recipes
 				} else {
 					dispatch(users.actions.setUserId(null));
 					dispatch(users.actions.setUsername(null));
