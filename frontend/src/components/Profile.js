@@ -49,7 +49,7 @@ const Profile = () => {
 				<p>Vi ska lägga till username och name</p>
 
 				<p>
-					Welcome, {user}/{username}, to your profile! Make yourself at home
+					Welcome, {name}/{username}, to your profile! Make yourself at home
 					while you reminisce over the amazing recipes you've uploaded!
 				</p>
 			</div>

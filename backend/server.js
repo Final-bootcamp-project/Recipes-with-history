@@ -49,7 +49,7 @@ app.get('/profile/:userId', authenticateUser, userRecipes); //authenticateUser
 app.get('/recipelist', recipeList); // 20 recipes for guest user
 
 //---------- RECIPE ENDPOINTS, GET
-app.get('/recipes', authenticateUser, findRecipes); //recipes per user
+app.get('/', findRecipes); //recipes per user
 app.get('/recipes', authenticateUser, allRecipes);
 
 //---------- RECIPE ENDPOINTS, POST

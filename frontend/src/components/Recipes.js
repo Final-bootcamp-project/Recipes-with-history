@@ -14,7 +14,7 @@ import { API_URL } from '../utils/urls';
 
 const Recipes = () => {
 	const navigate = useNavigate();
-	const accessToken = useSelector((store) => store.user.accessToken);
+	const accessToken = useSelector((store) => store.users.accessToken);
 	// const loading = useSelector((store) => store.loading.loading);
 	const recipes = useSelector((store) => store.recipe.items);
 	const dispatch = useDispatch();

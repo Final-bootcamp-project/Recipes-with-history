@@ -11,6 +11,7 @@ import NotFound from './components/NotFound.js';
 import Profile from './components/Profile.js';
 import HomePage from './components/HomePage.js';
 import Recipes from './components/Recipes.js';
+import StyledSearchBar from './components/styling/StyledSearchBar.js';
 
 import { HeaderMenu } from './components/Header.js';
 
