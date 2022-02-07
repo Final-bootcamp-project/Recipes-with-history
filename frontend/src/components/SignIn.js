@@ -6,7 +6,7 @@ import { StyledButton } from './styling/StyledButton.js';
 import { StyledForm } from './styling/StyledForm.js';
 import { StyledLabel } from './styling/StyledLabel.js';
 import { StyledInput } from './styling/StyledInput.js';
-import LoadingAnimation from './Loader.js';
+//import LoadingAnimation from './Loader.js';
 
 import { users } from '../reducers/users.js';
 
@@ -21,7 +21,7 @@ const SignIn = () => {
 	const navigate = useNavigate();
 
 	const accessToken = useSelector((store) => store.user.accessToken);
-	const loading = useSelector((store) => store.loading);
+	//const loading = useSelector((store) => store.loading);
 
 	useEffect(() => {
 		if (accessToken) {
@@ -53,7 +53,7 @@ const SignIn = () => {
 						dispatch(users.actions.setError(null));
 					});
 					// console.log(json.response);
-					navigate('/recipes'); 
+					navigate('/profile/:userId'); 
 				} else {
 					dispatch(users.actions.setUserId(null));
 					dispatch(users.actions.setUsername(null));

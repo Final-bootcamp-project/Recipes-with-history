@@ -55,6 +55,7 @@ app.get('/recipes', authenticateUser, allRecipes);
 //---------- RECIPE ENDPOINTS, POST
 app.post('/recipes', authenticateUser, addRecipe);
 app.post('/recipes/:recipeId/like', authenticateUser, likeRecipe);
+app.post('/profile/:userId', authenticateUser, addRecipe);
 
 // Start the server
 app.listen(port, () => {

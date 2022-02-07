@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { StyledButton } from './StyledButton';
+import { StyledInput } from './StyledInput';
 
 import { recipe } from '../../reducers/recipes';
 
@@ -22,7 +23,7 @@ export const StyledSearchBar = ({ searchQuery, setSearchQuery }) => {
 			<label htmlFor='header-search'>
 				<AccessibleLabel>Search recipe</AccessibleLabel>
 			</label>
-			<input
+			<StyledInput
 				type='text'
 				id='header-search'
 				placeholder='Search recipe'

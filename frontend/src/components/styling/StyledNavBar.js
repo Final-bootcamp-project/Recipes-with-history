@@ -24,8 +24,9 @@ import { API_PROFILE } from '../../utils/urls';
 const StyledNav = styled.div`
 	display: flex;
 	flex.direction: column;
+	width: auto;
 	margin: auto 10px;
-	background: rgba(173, 216, 230, 0.5);
+	background: rgba(173, 216, 230, 0.8);
 `;
 
 const StyledList = styled.ul`
@@ -41,7 +42,8 @@ const StyledLink = styled(Link)`
 	font-weight: bold;
 	text-decoration: none;
 	color: white;
-	margin-top: 10px; ;
+	margin-top: 10px; 
+	font-family: 'Patrick Hand', cursive;
 `;
 
 export const StyledNavBar = () => {
@@ -59,26 +61,6 @@ export const StyledNavBar = () => {
 		});
 	};
 
-	// useEffect(() => {
-	// 	fetchProfileInfo();
-	// }, [userId]);
-
-	// const fetchProfileInfo = () => {
-	// 	fetch(API_PROFILE(userId))
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			//console.log(data.response);
-	// 			if (data.success) {
-	// 				dispatch(users.actions.setUser(data.response));
-	// 				dispatch(users.actions.setError(null));
-	// 				console.log(data.response);
-	// 			} else {
-	// 				dispatch(users.actions.setUser(null));
-	// 				dispatch(users.actions.setError(data.response));
-	// 			}
-	// 		});
-	// };
-
 	return (
 		<StyledNav>
 			<Hamburger
@@ -93,8 +75,8 @@ export const StyledNavBar = () => {
 					{!accessToken && <StyledLink to='/signin'>Sign in</StyledLink>}
 					{accessToken && (
 						<> 
-					<StyledLink to='/recipes'>Recipes</StyledLink>
-					<StyledLink to='/profile/{userId}'>Profile?</StyledLink>
+					<StyledLink to='/recipes'>All recipes</StyledLink>
+					<StyledLink to='/profile/{userId}'>My profile</StyledLink>
 					<StyledButton onClick={() => logout()}>Log out</StyledButton>
 					</>
 					)}
