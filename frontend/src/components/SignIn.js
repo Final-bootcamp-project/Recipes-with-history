@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch, batch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { StyledButton } from './styling/StyledButton.js';
 import { StyledForm } from './styling/StyledForm.js';
@@ -15,6 +15,7 @@ import { API_URL } from '../utils/urls.js';
 const SignIn = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+	const { userId } = useParams();
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -51,8 +52,8 @@ const SignIn = () => {
 						dispatch(users.actions.setAccessToken(json.response.accessToken));
 						dispatch(users.actions.setError(null));
 					});
-					console.log(json.response);
-					navigate('/'); //should be /recipes
+					// console.log(json.response);
+					navigate('/recipes'); 
 				} else {
 					dispatch(users.actions.setUserId(null));
 					dispatch(users.actions.setUsername(null));

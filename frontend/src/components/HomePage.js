@@ -13,6 +13,7 @@ const HomePage = () => {
 	//const loading = useSelector((store) => store.loading.loading);
 	const dispatch = useDispatch();
 	const recipes = useSelector((store) => store.recipe.items);
+	const accessToken = useSelector((store) => store.user.accessToken);
 
 	useEffect(() => {
 		fetchGuestRecipes();
@@ -35,10 +36,19 @@ const HomePage = () => {
 	};
 	return (
 		//loading === false && (
+		
 		<div>
-			{/* intro/welcome text */}
+			{!accessToken ? (
+				<>
+				<h1>Hej och välkommen till vår sida för nya och gamla recept!</h1>
+				<RecipeCard recipeprop={recipes} />
+				</>
+			) : (
+			<>
 			<RecipeCard recipeprop={recipes} />
-			<p>HERE WE WANT TO DISPLAY 20 RECIPES, FOR GUESTS</p>
+			<p>Testing</p>
+			</>
+			)}
 		</div>
 		//)
 	);

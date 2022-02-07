@@ -9,14 +9,15 @@ import { StyledSearchBar } from './styling/StyledSearchBar';
 
 const Header = styled.header`
 	display: flex;
-	// justify-content: center;
-	// align-items: space-between;
+	justify-content: space-between;
+	align-items: center;
 	width: 100%;
 	height: 100px;
 	margin-top: 0;
 	margin-bottom: 20px;
 	background-color: lightblue;
 	color: white;
+	padding: 15px;
 `;
 
 export const HeaderMenu = () => {
@@ -67,11 +68,11 @@ export const HeaderMenu = () => {
 					searchQuery={searchQuery}
 					setSearchQuery={setSearchQuery}
 				/>
-				<ul>
+				{/* <ul>
 					{filteredRecipes.map((recipe) => (
 						<li key={recipe._id}>{recipe.name}</li>
 					))}
-				</ul>
+				</ul> */}
 			</Header>
 		</>
 	);

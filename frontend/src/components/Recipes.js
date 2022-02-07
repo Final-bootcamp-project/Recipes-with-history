@@ -14,7 +14,7 @@ import { API_URL } from '../utils/urls';
 
 const Recipes = () => {
 	const navigate = useNavigate();
-	const accessToken = useSelector((store) => store.users.accessToken);
+	const accessToken = useSelector((store) => store.user.accessToken);
 	// const loading = useSelector((store) => store.loading.loading);
 	const recipes = useSelector((store) => store.recipe.items);
 	const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const Recipes = () => {
 		fetchRecipes();
 	}, [accessToken]);
 
-	const fetchRecipes = (accessToken) => {
+	const fetchRecipes = () => {
 		const options = {
 			method: 'GET',
 			headers: {
@@ -40,7 +40,7 @@ const Recipes = () => {
 		fetch(API_URL('/recipes'), options)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log('hello');
+				console.log('hello', data);
 				if (data.success) {
 					dispatch(recipe.actions.setRecipe(data.response));
 					dispatch(recipe.actions.setError(null));
@@ -50,6 +50,9 @@ const Recipes = () => {
 					dispatch(recipe.actions.setError(data.response));
 					console.log('no...');
 				}
+			})
+			.catch((error) => {
+				console.error(error);
 			});
 	};
 	return (

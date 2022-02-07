@@ -21,13 +21,21 @@ const Profile = () => {
 	const userID = useSelector((store) => store.user.userId);
 	const username = useSelector((store) => store.user.username);
 	const name = useSelector((store) => store.user.name);
+	const accessToken = useSelector((store) => store.user.accessToken);
 
 	useEffect(() => {
 		fetchProfileInfo();
 	}, [userId]);
 
+	const options = {
+		method: 'GET',
+		headers: {
+			Authorization: accessToken,
+		},
+	};
+
 	const fetchProfileInfo = () => {
-		fetch(API_PROFILE(userId))
+		fetch(API_PROFILE(userId), options)
 			.then((res) => res.json())
 			.then((data) => {
 				//console.log(data.response);

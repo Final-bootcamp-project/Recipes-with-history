@@ -11,7 +11,7 @@ export const signIn = async (req, res) => {
 				response: {
 					userId: user._id,
 					username: user.username,
-					//accessToken: user.accessToken, //should we have this here??
+					accessToken: user.accessToken, 
 				},
 				success: true,
 			});

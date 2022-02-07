@@ -59,25 +59,25 @@ export const StyledNavBar = () => {
 		});
 	};
 
-	useEffect(() => {
-		fetchProfileInfo();
-	}, [userId]);
+	// useEffect(() => {
+	// 	fetchProfileInfo();
+	// }, [userId]);
 
-	const fetchProfileInfo = () => {
-		fetch(API_PROFILE(userId))
-			.then((res) => res.json())
-			.then((data) => {
-				//console.log(data.response);
-				if (data.success) {
-					dispatch(users.actions.setUser(data.response));
-					dispatch(users.actions.setError(null));
-					console.log(data.response);
-				} else {
-					dispatch(users.actions.setUser(null));
-					dispatch(users.actions.setError(data.response));
-				}
-			});
-	};
+	// const fetchProfileInfo = () => {
+	// 	fetch(API_PROFILE(userId))
+	// 		.then((res) => res.json())
+	// 		.then((data) => {
+	// 			//console.log(data.response);
+	// 			if (data.success) {
+	// 				dispatch(users.actions.setUser(data.response));
+	// 				dispatch(users.actions.setError(null));
+	// 				console.log(data.response);
+	// 			} else {
+	// 				dispatch(users.actions.setUser(null));
+	// 				dispatch(users.actions.setError(data.response));
+	// 			}
+	// 		});
+	// };
 
 	return (
 		<StyledNav>
@@ -91,13 +91,13 @@ export const StyledNavBar = () => {
 				<StyledList>
 					<StyledLink to='/'>Home</StyledLink>
 					{!accessToken && <StyledLink to='/signin'>Sign in</StyledLink>}
-					{/* {accessToken && (
-						<> */}
+					{accessToken && (
+						<> 
 					<StyledLink to='/recipes'>Recipes</StyledLink>
 					<StyledLink to='/profile/{userId}'>Profile?</StyledLink>
 					<StyledButton onClick={() => logout()}>Log out</StyledButton>
-					{/* </>
-					)} */}
+					</>
+					)}
 				</StyledList>
 			)}
 		</StyledNav>
