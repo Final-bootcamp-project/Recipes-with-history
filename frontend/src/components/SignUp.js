@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch, batch } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { useDispatch, batch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { users } from '../reducers/users.js';
-import { HeaderMenu } from './Header.js';
 import { API_URL } from '../utils/urls.js';
 
 import { StyledForm } from './styling/StyledForm.js';
@@ -16,9 +14,8 @@ const SignUp = () => {
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [userCreated, setUserCreated] = useState(false);
-	const user = useSelector((store) => store.username);
-
+	
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const handleSubmit = (event) => {
@@ -45,7 +42,7 @@ const SignUp = () => {
 						dispatch(users.actions.setAccessToken(json.response.accessToken));
 						dispatch(users.actions.setError(null));
 					});
-					setUserCreated(true);
+					navigate("/signin")
 				} else {
 					batch(() => {
 						dispatch(users.actions.setUsername(null));
@@ -59,16 +56,7 @@ const SignUp = () => {
 	};
 
 	return (
-		<>
-			{userCreated ? (
-				<StyledForm>
-					<p>Welcome {username}!</p>
-					<p>
-						Click <Link to='/signin'>here</Link> to login!
-					</p>
-				</StyledForm>
-			) : (
-				<div>
+			<div>
 					<StyledForm onSubmit={(event) => handleSubmit(event)}>
 						<label htmlFor='nameInput'>name:</label>
 						<StyledInput
@@ -104,9 +92,9 @@ const SignUp = () => {
 						<StyledButton type='submit'>Create user</StyledButton>
 					</StyledForm>
 				</div>
-			)}
-		</>
-	);
+			)
+
+	
 };
 
 export default SignUp;

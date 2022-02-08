@@ -19,6 +19,7 @@
     "react-responsive-modal": "^6.2.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.3",
     "uniqid": "^5.4.0"
   },

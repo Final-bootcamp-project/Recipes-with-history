@@ -1,16 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = localStorage.getItem('user')
+  ? {
+    id: JSON.parse(localStorage.getItem('user')).id,
+    username: JSON.parse(localStorage.getItem('user')).username,
+		name: JSON.parse(localStorage.getItem('user')).name,
+    accessToken: JSON.parse(localStorage.getItem('user')).accessToken,
+    items: [], 
+    error: null
+  }
+  : {
+    id: null,
+    username: null,
+		name: null,
+    accessToken: null,
+    items: [],
+    errors: null
+  }
+
 //every state contains of three things: name, initialState(object/array), reducers (anonymous function)
 export const users = createSlice({
 	name: 'users',
-	initialState: {
-		items: [],
-		userId: null,
-		name: null,
-		username: null,
-		accessToken: null,
-		error: null,
-	},
+	initialState,
 	reducers: {
 		//this is built as an object, so we construct its properties, inside
 		// what to keep, and what to change? /Rebecca

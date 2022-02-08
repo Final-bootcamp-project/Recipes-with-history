@@ -1,8 +1,8 @@
 // Shown when signed in. Search recipe, add recipe, and show all recipes.
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // import CreateRecipe from './CreateRecipe';
 // import LoadingAnimation from './Loader';
@@ -56,16 +56,13 @@ const Recipes = () => {
 			});
 	};
 	return (
-		//loading === false && (
-		<div>
-			{/* <CreateRecipe /> */}
-			<RecipeCard recipeprop={recipes} />
+			<div>
+					<RecipeCard recipeprop={recipes} />
 			<p>hello!</p>
-			{/* search function, filter on liked recipes 
-      all recipes uploaded, desc */}
-			{/*    <StyledButton onClick={() => logout()}>Log out</StyledButton> */}
+	
+
 		</div>
 	);
-	//);
+
 };
 export default Recipes;

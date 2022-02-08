@@ -1,25 +1,11 @@
 import styled from 'styled-components';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch, batch } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Spin as Hamburger } from 'hamburger-react';
 
 import { StyledButton } from './StyledButton';
 import { users } from '../../reducers/users';
-
-import { API_PROFILE } from '../../utils/urls';
-
-// const Hamburger = styled.nav`
-// 	display: flex;
-// 	justify-content: flex-start;
-// 	align-items: center;
-// 	position: sticky;
-// 	height: 80px;
-// 	width: 100%;
-// 	top: 0;
-// 	z-index: 999;
-// 	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
-// `;
 
 const StyledNav = styled.div`
 	display: flex;
@@ -49,7 +35,6 @@ const StyledLink = styled(Link)`
 export const StyledNavBar = () => {
 	const dispatch = useDispatch();
 	const [isOpen, setIsOpen] = useState(false);
-	const { userId } = useParams();
 	const accessToken = useSelector((store) => store.user.accessToken);
 
 	const logout = () => {
@@ -71,12 +56,17 @@ export const StyledNavBar = () => {
 			/>
 			{isOpen && (
 				<StyledList>
-					<StyledLink to='/'>Home</StyledLink>
-					{!accessToken && <StyledLink to='/signin'>Sign in</StyledLink>}
+					<StyledLink to='/' onClick={() => setIsOpen(false)}>Home</StyledLink>
+					{!accessToken && (
+					<>
+					<StyledLink to='/signin' onClick={() => setIsOpen(false)}>Sign in</StyledLink>
+					<StyledLink to='/signup' onClick={() => setIsOpen(false)}>Sign up</StyledLink>
+					</>
+					)}
 					{accessToken && (
 						<> 
-					<StyledLink to='/recipes'>All recipes</StyledLink>
-					<StyledLink to='/profile/{userId}'>My profile</StyledLink>
+					<StyledLink to='/recipes' onClick={() => setIsOpen(false)}>All recipes</StyledLink>
+					<StyledLink to='/profile/{userId}' onClick={() => setIsOpen(false)}>My profile</StyledLink>
 					<StyledButton onClick={() => logout()}>Log out</StyledButton>
 					</>
 					)}

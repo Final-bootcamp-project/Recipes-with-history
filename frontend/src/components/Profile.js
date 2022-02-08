@@ -31,10 +31,6 @@ const Profile = () => {
 	const name = useSelector((store) => store.user.name);
 	const accessToken = useSelector((store) => store.user.accessToken);
 
-	
-
-	
-
 	useEffect(() => {
 		fetchProfileInfo();
 	}, [userId]);

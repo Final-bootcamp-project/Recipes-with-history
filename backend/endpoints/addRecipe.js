@@ -1,22 +1,26 @@
 import { Recipe } from '../models/Recipe.js';
+import { User } from '../models/User.js';
 
 export const addRecipe = async (req, res) => {
+  const { user } = req.params;
     const {
       title,
       ingredients,
       cookingSteps,
       category,
-      uploadedBy,
+      // uploadedBy,
       recipeCreator,
     } = req.body;
   
     try {
+      // const queriedUser = await User.findById(user);
+        
       const newRecipe = await new Recipe({
         title,
         ingredients,
         cookingSteps,
         category,
-        uploadedBy,
+        // uploadedBy: queriedUser,
         recipeCreator,
       }).save();
       //If successful, status code = successful:

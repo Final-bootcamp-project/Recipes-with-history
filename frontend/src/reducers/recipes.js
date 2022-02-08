@@ -30,7 +30,7 @@ export const recipe = createSlice({
 				text: data,
 				isLiked: false,
 			};
-			//store.items = [...store.items, newRecipe];
+			store.items = [...store.items, newRecipe];
 		},
 		setRecipe: (store, action) => {
 			store.items = action.payload;

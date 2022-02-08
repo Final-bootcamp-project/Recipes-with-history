@@ -15,6 +15,7 @@ const RecipeSchema = mongoose.Schema({
 	},
 	category: {
 		type: String,
+		enum: [ 'Breakfast', 'Warm meal', 'Cold meal', 'Snack', 'Dessert', 'Drink', 'Baking' ]
 	},
 	cookingSteps: {
 		type: String,
@@ -29,10 +30,10 @@ const RecipeSchema = mongoose.Schema({
 		type: Date,
 		default: () => new Date(),
 	},
-	uploadedBy: {
-		type: String,
-		required: true,
-	},
+	// uploadedBy: {
+	// 	type: mongoose.Schema.Types.ObjectId,
+	// 	ref: 'User',
+	// },
 	recipeCreator: {
 		type: String,
 		required: true,
