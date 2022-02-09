@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
 
+import { recipe } from '../reducers/recipes';
 import { users } from '../reducers/users';
+
 
 
 
@@ -11,6 +13,7 @@ const LikeButton = styled.button`
 display: inline-block;
 border-radius: 50%;
 width: 50px;
+
 `
 
 const RecipeContainer = styled.div`
@@ -50,6 +53,41 @@ export const RecipeCard = ({ recipeprop }) => {
 	const accessToken = useSelector((store) => store.user.accessToken);
 	const [onLikesIncrease, setOnLikesIncrease] = useState('');
 
+	const likeRecipe = (accessToken, userId, recipe) => {
+		return (dispatch) => {
+			const options = {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: accessToken,
+				},
+				body: JSON.stringify({ 
+					isLiked,
+					user: userId }),
+			};
+			fetch(API_URL("/recipes/:recipeId/like"), options)
+				.then((res) => res.json())
+				.then((data) => {
+					if (data.success) {
+						// console.log('Nytt recept sparat!', data);
+						batch(() => {
+						dispatch(toggleRecipe(accessToken, userId, recipeId));
+						dispatch(recipe.actions.setError(null));
+						})
+					} else {
+						batch(() => {
+						dispatch(recipe.actions.setRecipe([]));
+						dispatch(recipe.actions.setError(data.response));	
+						})
+					}
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		}
+	}
+
+
 	return (
 		<RecipeContainer>
 			{recipeprop.map((recipe) => (
@@ -61,11 +99,16 @@ export const RecipeCard = ({ recipeprop }) => {
 					<p>{recipe.recipeCreator}</p>
 					<p>{moment(recipe.createdAt).fromNow()}</p>					
 					
-					{/* {accessToken && (
+					{accessToken && (
 					<div>
-						<LikeButton onLikesIncrease={onLikesIncrease} recipe={recipe} /> x &nbsp;
+						<LikeButton 
+							onClick={(event) => event.target.value} 
+							onLikesIncrease={onLikesIncrease} 
+							recipe={recipe._id} 
+							/> 
+							x &nbsp;
 						{recipe.likes}
-					</div>)}  */}
+					</div>)} 
 
 				</RecipeWrapper>
 			))}

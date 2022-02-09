@@ -56,15 +56,12 @@ export const recipe = createSlice({
 		setRecipeCreator: (store, action) => {
 			store.recipeCreator = action.payload;
 		},
-		setIsLiked: (store, action) => {
-			store.isLiked = action.payload;
-		},
 		setError: (store, action) => {
 			store.error = action.payload;
 		},
 		toggleRecipe: (store, action) => {
 			//this will display if the like is true or false
-			const updatedRecipeLike = store.isLiked.map((recipe) => {
+			const updatedRecipeLike = store.items.map((recipe) => {
 				if (recipe.id === action.payload) {
 					const updatedLike = {
 						...recipe,
