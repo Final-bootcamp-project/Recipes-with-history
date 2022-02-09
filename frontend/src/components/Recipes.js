@@ -58,8 +58,6 @@ const Recipes = () => {
 	return (
 			<div>
 					<RecipeCard recipeprop={recipes} />
-			<p>hello!</p>
-	
 
 		</div>
 	);

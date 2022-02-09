@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import { useSelector, useDispatch, batch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Spin as Hamburger } from 'hamburger-react';
 
 import { StyledButton } from './StyledButton';
@@ -36,6 +36,7 @@ export const StyledNavBar = () => {
 	const dispatch = useDispatch();
 	const [isOpen, setIsOpen] = useState(false);
 	const accessToken = useSelector((store) => store.user.accessToken);
+	const navigate= useNavigate();
 
 	const logout = () => {
 		batch(() => {
@@ -43,7 +44,8 @@ export const StyledNavBar = () => {
 			dispatch(users.actions.setUserId(null));
 			dispatch(users.actions.setAccessToken(null));
 			dispatch(users.actions.setError(null));
-		});
+		})
+		navigate('/');
 	};
 
 	return (

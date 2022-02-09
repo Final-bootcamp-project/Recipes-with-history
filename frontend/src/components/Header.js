@@ -2,10 +2,9 @@ import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { recipe } from '../reducers/recipes';
-
 import { StyledNavBar } from './styling/StyledNavBar';
-import { StyledSearchBar } from './styling/StyledSearchBar';
+//import { StyledSearchBar } from './styling/StyledSearchBar';
+//import { recipe } from '../reducers/recipes';
 
 const Header = styled.header`
 	display: flex;
@@ -23,9 +22,8 @@ const Header = styled.header`
 `;
 
 export const HeaderMenu = () => {
-	//const recipes = useSelector((store) => store.recipe.items);
 	const dispatch = useDispatch();
-
+	//const recipes = useSelector((store) => store.recipe.items);
 	//const { search } = window.location;
 	//const query = new URLSearchParams(search).get('s');
 	//const [searchQuery, setSearchQuery] = useState(query || '');
@@ -65,7 +63,7 @@ export const HeaderMenu = () => {
 		<>
 			<Header>
 				<StyledNavBar />
-				<h1>Saved recipes</h1>
+				<h1>My saved recipes</h1>
 				{/* <StyledSearchBar
 					searchQuery={searchQuery}
 					setSearchQuery={setSearchQuery}

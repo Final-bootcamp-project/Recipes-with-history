@@ -5,7 +5,13 @@ import moment from 'moment';
 
 import { users } from '../reducers/users';
 
-//import LikeButton from './LikeButton';
+
+
+const LikeButton = styled.button`
+display: inline-block;
+border-radius: 50%;
+width: 50px;
+`
 
 const RecipeContainer = styled.div`
 	width: 100%;
@@ -42,6 +48,7 @@ const RecipeWrapper = styled.article`
 // --------------------DON'T TOUCH!! IT WORKS WITH HOMEPAGE!
 export const RecipeCard = ({ recipeprop }) => {
 	const accessToken = useSelector((store) => store.user.accessToken);
+	const [onLikesIncrease, setOnLikesIncrease] = useState('');
 
 	return (
 		<RecipeContainer>
@@ -58,7 +65,7 @@ export const RecipeCard = ({ recipeprop }) => {
 					<div>
 						<LikeButton onLikesIncrease={onLikesIncrease} recipe={recipe} /> x &nbsp;
 						{recipe.likes}
-					</div>)} */}
+					</div>)}  */}
 
 				</RecipeWrapper>
 			))}

@@ -56,6 +56,9 @@ export const recipe = createSlice({
 		setRecipeCreator: (store, action) => {
 			store.recipeCreator = action.payload;
 		},
+		setIsLiked: (store, action) => {
+			store.isLiked = action.payload;
+		},
 		setError: (store, action) => {
 			store.error = action.payload;
 		},

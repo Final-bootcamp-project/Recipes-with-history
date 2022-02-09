@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch, batch } from 'react-redux';
 // import { useNavigate, Link } from 'react-router-dom';
-// import styled from "styled-components";
+import styled from "styled-components";
 // import { Modal } from 'react-responsive-modal';
 
 import { StyledContainer } from './styling/StyledContainer.js';
@@ -13,21 +13,36 @@ import { StyledButton } from './styling/StyledButton.js';
 import { recipe } from '../reducers/recipes.js';
 import { API_URL } from '../utils/urls.js';
 
+const StyledSelect = styled.select`
+  border:none;
+  padding: 10px 15px;
+  margin: 0 0 20px;
+  height: 40px;
+  display: block;
+  border-radius: 5px;
+  font-size: 18px;
+  background-color:#d5f5f2;
+  font-weight: 800;
+  font-family: 'Patrick Hand', cursive;
+  text-align: center;
+  `;
+
 // ----------- ADD RECIPE TO
 
 const CreateRecipe = () => {
-	const [recipe, setRecipe] = useState('');
+	const [recipe, setRecipe] = useState({});
 	const [title, setTitle] = useState('');
 	const [cookingSteps, setCookingSteps] = useState('');
 	const [ingredients, setIngredients] = useState('');
-	const [open, setOpen] = useState(false);
-	const [uploadedBy, setUploadedBy] = useState('');
-	const [createdBy, setCreatedBy] = useState('');
+	// const [open, setOpen] = useState(false);
+	// const [uploadedBy, setUploadedBy] = useState('');
+	const [category, setCategory] = useState('');
+	const [recipeCreator, setRecipeCreator] = useState('Creator')
 
-	const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => setOpen(false);
+	// const onOpenModal = () => setOpen(true);
+  // const onCloseModal = () => setOpen(false);
 
-	//const loading = useSelector((store) => store.loading.loading);
+	// const loading = useSelector((store) => store.loading.loading);
 	// const recipes = useSelector((store) => store.recipes.items);
 	const accessToken = useSelector((store) => store.user.accessToken);
 	const userId = useSelector((store) => store.user.userId);
@@ -44,19 +59,28 @@ const CreateRecipe = () => {
 					"Content-Type": "application/json",
 					Authorization: accessToken,
 				},
-				body: JSON.stringify({ recipe, user: userId }),
+				body: JSON.stringify({ 
+					title,
+					ingredients,
+					cookingSteps,
+					category, 
+					recipeCreator,
+					user: userId }),
 			};
 			fetch(API_URL("/recipes"), options)
 				.then((res) => res.json())
 				.then((data) => {
 					if (data.success) {
-						console.log('Nytt recept sparat!', data);
+						// console.log('Nytt recept sparat!', data);
+						batch(() => {
 						dispatch(addRecipe(accessToken, userId));
 						dispatch(recipe.actions.setError(null));
+						})
 					} else {
+						batch(() => {
 						dispatch(recipe.actions.setRecipe([]));
-						dispatch(recipe.actions.setError(data.response));
-						console.log('Inget recept sparat', data.response);
+						dispatch(recipe.actions.setError(data.response));	
+						})
 					}
 				})
 				.catch((error) => {
@@ -73,10 +97,43 @@ const CreateRecipe = () => {
 	return (
 		// <StyledContainer>
 		<div>
-			{/* Dropdown for category */}
+	
 			
 				<StyledForm>
-					<StyledLabel htmlFor='title'>New recipe </StyledLabel>
+					<h2>Add new recipe </h2>
+					<StyledSelect
+						id="category"
+						value={category}
+						onChange={(event) => setCategory(event.target.value)}
+						required
+						>
+						<option disabled value="">
+							Select Category:
+						</option>
+						<option value="Breakfast" >
+							Breakfast
+						</option>
+						<option value="Warm meal">
+							Warm meal
+						</option>
+						<option value="Cold meal">
+							Cold meal
+						</option>
+						<option value="Snack">
+							Snack
+						</option>
+						<option value="Dessert">
+							Dessert
+						</option>
+						<option value="Drink">
+							Drink
+						</option>
+						<option value="Baking">
+							Baking
+						</option>
+					</StyledSelect>						
+					
+					<StyledLabel htmlFor='title'>Recipe title </StyledLabel>
 					<StyledInput
 						id='title'
 						type='text'
@@ -104,12 +161,12 @@ const CreateRecipe = () => {
 						required
 						/>
 
-					<StyledLabel htmlFor='createdBy'>Created by: </StyledLabel>
+					<StyledLabel htmlFor='recipeCreator'>Created by: </StyledLabel>
 					<StyledInput
-						id='createdBy'
+						id='recipeCreator'
 						type='text'
-						value={createdBy}
-						onChange={(event) => setCreatedBy(event.target.value)}
+						value={recipeCreator}
+						onChange={(event) => setRecipeCreator(event.target.value)}
 						placeholder='Who created the recipe?'
 						required
 						/>

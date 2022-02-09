@@ -11,7 +11,7 @@ export const addRecipe = async (req, res) => {
       // uploadedBy,
       recipeCreator,
     } = req.body;
-  
+  console.log(req.body)
     try {
       // const queriedUser = await User.findById(user);
         
@@ -23,6 +23,7 @@ export const addRecipe = async (req, res) => {
         // uploadedBy: queriedUser,
         recipeCreator,
       }).save();
+    
       //If successful, status code = successful:
       res.status(201).json({
         response: newRecipe,
