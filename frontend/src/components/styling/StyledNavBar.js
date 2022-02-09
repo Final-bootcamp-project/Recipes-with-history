@@ -11,7 +11,6 @@ const StyledNav = styled.div`
 	display: flex;
 	flex.direction: column;
 	width: auto;
-	margin: auto 10px;
 	background: rgba(173, 216, 230, 0.8);
 `;
 
@@ -19,17 +18,18 @@ const StyledList = styled.ul`
 	list-style-type: none;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin: 10px;
+	align-items: flex-start;
 `;
 
 const StyledLink = styled(Link)`
 	font-weight: bold;
 	text-decoration: none;
-	color: white;
+	color: black;
 	margin-top: 10px; 
 	font-family: 'Patrick Hand', cursive;
+	font-size: 17px;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
 `;
 
 export const StyledNavBar = () => {

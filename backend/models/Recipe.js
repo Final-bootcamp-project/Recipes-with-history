@@ -30,10 +30,6 @@ const RecipeSchema = mongoose.Schema({
 		required: true,
 		trim: true,
 	},
-	likes: {
-		type: Number,
-		default: 0,
-	},
 	createdAt: {
 		type: Date,
 		default: () => new Date(),
@@ -50,3 +46,6 @@ const RecipeSchema = mongoose.Schema({
 
 // Mongoose model which includes the Recipe schema
 export const Recipe = mongoose.model('Recipe', RecipeSchema);
+export const LikedRecipe = mongoose.model('LikedRecipe', RecipeSchema);
+
+

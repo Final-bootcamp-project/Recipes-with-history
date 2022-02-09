@@ -8,31 +8,31 @@ import { users } from '../reducers/users';
 
 import { API_URL } from '../utils/urls';
 
-const LikeButton = styled.input`
-	// display: inline-block;
-	// border-radius: 50%;
-	// width: 50px;
-`;
+const LikeButton = styled.button`
+	display: inline-block;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
 
-const RecipeContainer = styled.div`
-	width: 100%;
-	padding: 20px;
-	display: flex;
-	flex-direction: column;
-
-	@media (min-width: 768px) {
-		flex-direction: row;
+	:active {
+		color: pink;
+		border: 3px solid white;
 	}
 `;
 
+const RecipeContainer = styled.div`
+display: grid;
+grid-template-columns: 1fr;
+width: 100%;
+
+@media (min-width: 768px) {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+`
+
 const RecipeWrapper = styled.article`
-	// width: 40%;
-	// height: 300px;
-	// margin: 15px;
-	// padding: 10px 20px;
-	// border: 3px solid hotpink;
-	// height: auto;
-	width: 80%;
+	width: 95%;
 	display: flex;
 	flex-direction: column;
 	justify-self: center;
@@ -42,17 +42,32 @@ const RecipeWrapper = styled.article`
 	border-radius: 10px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	font-family: 'Patrick Hand', cursive;
-	letter-spacing: 0.8px;
-`;
+	letter-spacing: 0.8px;		
+	`;
+
+	const Styledh3 = styled.h3`
+	font-size: 25px;
+	font-weight: 30px;
+	letter-spacing: 1.5px;
+	`
+
+	const Styledh4 = styled.h4`
+	font-size: 20px;
+	border-top: 1px solid grey;
+	`
+	const StyledP = styled.p`
+	font-size: 15px;
+	`
+
 
 // --------------------DON'T TOUCH!! IT WORKS WITH HOMEPAGE!
 export const RecipeCard = ({ recipeprop }) => {
 	// const dispatch = useDispatch();
 
 	const accessToken = useSelector((store) => store.user.accessToken);
-	const [onLikesIncrease, setOnLikesIncrease] = useState('');
+	// const [onLikesIncrease, setOnLikesIncrease] = useState('');
 
-	const likeRecipe = (accessToken, userId, recipeId) => {
+	const likeRecipe = (accessToken, checkedAt, userId, recipeId) => {
 		return (dispatch) => {
 			const options = {
 				method: 'POST',
@@ -61,7 +76,7 @@ export const RecipeCard = ({ recipeprop }) => {
 					Authorization: accessToken,
 				},
 				body: JSON.stringify({
-					// likes,
+					checkedAt, 
 					user: userId,
 					recipe: recipeId,
 				}),
@@ -73,14 +88,12 @@ export const RecipeCard = ({ recipeprop }) => {
 					if (data.success) {
 						// console.log('Nytt recept sparat!', data);
 						batch(() => {
-							dispatch(
-								recipe.actions.toggleRecipe(accessToken, userId, recipeId)
-							);
+							dispatch(recipe.actions.setLike(accessToken, userId, recipeId));
 							dispatch(recipe.actions.setError(null));
 						});
 					} else {
 						batch(() => {
-							dispatch(recipe.actions.setRecipe([]));
+							dispatch(recipe.actions.setLike([]));
 							dispatch(recipe.actions.setError(data.response));
 						});
 					}
@@ -95,25 +108,22 @@ export const RecipeCard = ({ recipeprop }) => {
 		<RecipeContainer>
 			{recipeprop.map((recipe) => (
 				<RecipeWrapper key={recipe._id}>
-					<h3>{recipe.title}</h3>
-					<p>{recipe.ingredients}</p>
-					<p>{recipe.cookingSteps}</p>
-					<p>{recipe.uploadedBy}</p>
+					<Styledh3>{recipe.title}</Styledh3>
+					<Styledh4>Ingredients: <br/>{recipe.ingredients}</Styledh4>
+					<Styledh4>Cooking Steps: <br/>{recipe.cookingSteps}</Styledh4>
+					<StyledP>{recipe.uploadedBy}</StyledP>
 					{/* <p>{recipe.recipeCreator}</p> */}
-					<p>{moment(recipe.createdAt).fromNow()}</p>
+					<StyledP>{moment(recipe.createdAt).fromNow()}</StyledP>
 
 					{accessToken && (
 						<div>
 							<LikeButton
-								type='checkbox'
-								checked={recipe.isLiked}
+								// type='checkbox'
 								// onChange={() => likeRecipe(recipe._id)}
 								// onLikesIncrease={onLikesIncrease}
-								onChange={() => likeRecipe(recipe._id)}
+								onClick={() => likeRecipe(recipe._id)}
 								recipe={recipe._id}
 							/>
-							x &nbsp;
-							{recipe.likes}
 						</div>
 					)}
 				</RecipeWrapper>

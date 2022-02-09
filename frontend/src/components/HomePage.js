@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch, batch } from 'react-redux';
 
+import { StyledContainer } from './styling/StyledContainer'
 import { RecipeCard } from './RecipeCard.js';
 import { recipe } from '../reducers/recipes';
 
@@ -38,7 +39,7 @@ const HomePage = () => {
 	};
 	
 	return (
-			<div>
+			<StyledContainer>
 			{!accessToken ? (
 				<>
 				<h1>Hej och välkommen till vår sida för nya och gamla recept!</h1>
@@ -49,7 +50,7 @@ const HomePage = () => {
 			<RecipeCard recipeprop={recipes} />
 			</>
 			)}
-		</div>
+		</StyledContainer>
 	);
 };
 

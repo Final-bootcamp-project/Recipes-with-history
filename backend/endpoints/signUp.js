@@ -6,7 +6,6 @@ export const signUp = async (req, res) => {
 	const { name, email, username, password } = req.body;
 	try {
 		const salt = bcrypt.genSaltSync();
-		console.log('hello');
 		// a condition for creating a password
 		if (password.length < 6 || username.length < 5) {
 			console.log('user could not be created')

@@ -7,7 +7,9 @@ const initialState = localStorage.getItem('user')
 		name: JSON.parse(localStorage.getItem('user')).name,
     accessToken: JSON.parse(localStorage.getItem('user')).accessToken,
     items: [], 
-    error: null
+    error: null,
+		likedRecipes: [],
+		userRecipes: [],
   }
   : {
     id: null,
@@ -15,7 +17,9 @@ const initialState = localStorage.getItem('user')
 		name: null,
     accessToken: null,
     items: [],
-    errors: null
+    errors: null,
+		likedRecipes: [],
+		userRecipes: [],
   }
 
 //every state contains of three things: name, initialState(object/array), reducers (anonymous function)
@@ -52,6 +56,12 @@ export const users = createSlice({
 		},
 		setError: (store, action) => {
 			store.error = action.payload;
+		},
+		setLike: (store, action) => {
+			store.likedRecipes = action.payload;
+		},
+		setUserRecipes: (store, action) => {
+			store.userRecipes = action.payload;
 		},
 	},
 });
