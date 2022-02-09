@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch, batch } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
 
 import { recipe } from '../reducers/recipes';
 import { users } from '../reducers/users';
 
+import { API_URL } from '../utils/urls';
 
-
-
-const LikeButton = styled.button`
-display: inline-block;
-border-radius: 50%;
-width: 50px;
-
-`
+const LikeButton = styled.input`
+	// display: inline-block;
+	// border-radius: 50%;
+	// width: 50px;
+`;
 
 const RecipeContainer = styled.div`
 	width: 100%;
@@ -47,46 +45,51 @@ const RecipeWrapper = styled.article`
 	letter-spacing: 0.8px;
 `;
 
-
 // --------------------DON'T TOUCH!! IT WORKS WITH HOMEPAGE!
 export const RecipeCard = ({ recipeprop }) => {
+	// const dispatch = useDispatch();
+
 	const accessToken = useSelector((store) => store.user.accessToken);
 	const [onLikesIncrease, setOnLikesIncrease] = useState('');
 
-	const likeRecipe = (accessToken, userId, recipe) => {
+	const likeRecipe = (accessToken, userId, recipeId) => {
 		return (dispatch) => {
 			const options = {
-				method: "POST",
+				method: 'POST',
 				headers: {
-					"Content-Type": "application/json",
+					'Content-Type': 'application/json',
 					Authorization: accessToken,
 				},
-				body: JSON.stringify({ 
-					isLiked,
-					user: userId }),
+				body: JSON.stringify({
+					// likes,
+					user: userId,
+					recipe: recipeId,
+				}),
 			};
-			fetch(API_URL("/recipes/:recipeId/like"), options)
+			fetch(API_URL('/recipes/:recipeId/like'), options)
 				.then((res) => res.json())
 				.then((data) => {
+					console.log(data);
 					if (data.success) {
 						// console.log('Nytt recept sparat!', data);
 						batch(() => {
-						dispatch(toggleRecipe(accessToken, userId, recipeId));
-						dispatch(recipe.actions.setError(null));
-						})
+							dispatch(
+								recipe.actions.toggleRecipe(accessToken, userId, recipeId)
+							);
+							dispatch(recipe.actions.setError(null));
+						});
 					} else {
 						batch(() => {
-						dispatch(recipe.actions.setRecipe([]));
-						dispatch(recipe.actions.setError(data.response));	
-						})
+							dispatch(recipe.actions.setRecipe([]));
+							dispatch(recipe.actions.setError(data.response));
+						});
 					}
 				})
 				.catch((error) => {
 					console.error(error);
 				});
-		}
-	}
-
+		};
+	};
 
 	return (
 		<RecipeContainer>
@@ -96,20 +99,23 @@ export const RecipeCard = ({ recipeprop }) => {
 					<p>{recipe.ingredients}</p>
 					<p>{recipe.cookingSteps}</p>
 					<p>{recipe.uploadedBy}</p>
-					<p>{recipe.recipeCreator}</p>
-					<p>{moment(recipe.createdAt).fromNow()}</p>					
-					
-					{accessToken && (
-					<div>
-						<LikeButton 
-							onClick={(event) => event.target.value} 
-							onLikesIncrease={onLikesIncrease} 
-							recipe={recipe._id} 
-							/> 
-							x &nbsp;
-						{recipe.likes}
-					</div>)} 
+					{/* <p>{recipe.recipeCreator}</p> */}
+					<p>{moment(recipe.createdAt).fromNow()}</p>
 
+					{accessToken && (
+						<div>
+							<LikeButton
+								type='checkbox'
+								checked={recipe.isLiked}
+								// onChange={() => likeRecipe(recipe._id)}
+								// onLikesIncrease={onLikesIncrease}
+								onChange={() => likeRecipe(recipe._id)}
+								recipe={recipe._id}
+							/>
+							x &nbsp;
+							{recipe.likes}
+						</div>
+					)}
 				</RecipeWrapper>
 			))}
 		</RecipeContainer>

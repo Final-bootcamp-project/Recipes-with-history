@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 //-----------------TAGS & CATEGORY????-------------------------
 //Schema.plugin(random, { path: 'r' }); // by default `path` is `random`. It's used internally to store a random value on each doc.
@@ -15,7 +15,15 @@ const RecipeSchema = mongoose.Schema({
 	},
 	category: {
 		type: String,
-		enum: [ 'Breakfast', 'Warm meal', 'Cold meal', 'Snack', 'Dessert', 'Drink', 'Baking' ]
+		enum: [
+			'Breakfast',
+			'Warm meal',
+			'Cold meal',
+			'Snack',
+			'Dessert',
+			'Drink',
+			'Baking',
+		],
 	},
 	cookingSteps: {
 		type: String,
@@ -30,10 +38,10 @@ const RecipeSchema = mongoose.Schema({
 		type: Date,
 		default: () => new Date(),
 	},
-	// uploadedBy: {
-	// 	type: mongoose.Schema.Types.ObjectId,
-	// 	ref: 'User',
-	// },
+	uploadedBy: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+	},
 	recipeCreator: {
 		type: String,
 		required: true,
@@ -42,4 +50,3 @@ const RecipeSchema = mongoose.Schema({
 
 // Mongoose model which includes the Recipe schema
 export const Recipe = mongoose.model('Recipe', RecipeSchema);
-

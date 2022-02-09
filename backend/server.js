@@ -56,6 +56,7 @@ app.get('/recipes', authenticateUser, allRecipes);
 app.post('/recipes', authenticateUser, addRecipe);
 app.post('/recipes/:recipeId/like', authenticateUser, likeRecipe);
 app.post('/profile/:userId', authenticateUser, addRecipe);
+// app.get('/profile/:userId', authenticateUser, userRecipes);
 
 // Start the server
 app.listen(port, () => {

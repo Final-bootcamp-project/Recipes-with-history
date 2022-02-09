@@ -2,24 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch, batch } from 'react-redux'; // batch makes the wrapped dispatches to render only once
 import { useNavigate, Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Modal } from 'react-responsive-modal';
+// import { Modal } from 'react-responsive-modal';
 
 import { users } from '../reducers/users';
 import { API_PROFILE } from '../utils/urls';
 
-import CreateRecipe from './CreateRecipe.js'
+import CreateRecipe from './CreateRecipe.js';
 
 const ProfileWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	// border: 3px solid grey;
 `;
 
-const Span = styled.span`
-font-weight: 650;
-`
+const WelcomeText = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin: 10px auto;
+	font-family: 'Patrick Hand', cursive;
+`;
 
+// const Span = styled.span`
+// 	color: #a6f69d;
+// `;
 
 const Profile = () => {
 	const dispatch = useDispatch();
@@ -60,14 +66,15 @@ const Profile = () => {
 
 	return (
 		<ProfileWrapper>
-			<div>
-				<h2>
-					Welcome <Span>{username}</Span>, to your profile! Make yourself at home
-					while you reminisce over the amazing recipes you've uploaded!
-				</h2>
-			</div>	
+			<WelcomeText>
+				<h2>Welcome {username}!</h2>
+				<p>
+					Make yourself at home while you reminisce over the amazing recipes
+					you've uploaded!
+				</p>
+			</WelcomeText>
 
-				<CreateRecipe />			
+			<CreateRecipe />
 		</ProfileWrapper>
 	);
 };

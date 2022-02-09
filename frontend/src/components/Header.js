@@ -15,14 +15,20 @@ const Header = styled.header`
 	margin-top: 0;
 	margin-bottom: 20px;
 	background-color: lightblue;
-	color: white;
+	color: black;
 	padding: 15px;
 	font-family: 'Patrick Hand', cursive;
 	letter-spacing: 2px;
+
+	@media (max-width: 767px) {
+		h1 {
+			display: none;
+		}
+	}
 `;
 
 export const HeaderMenu = () => {
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	//const recipes = useSelector((store) => store.recipe.items);
 	//const { search } = window.location;
 	//const query = new URLSearchParams(search).get('s');

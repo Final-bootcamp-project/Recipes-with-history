@@ -72,7 +72,7 @@ export const recipe = createSlice({
 					return recipe;
 				}
 			});
-			//store.items = updatedRecipeLike;
+			store.items = updatedRecipeLike;
 		},
 	},
 });
