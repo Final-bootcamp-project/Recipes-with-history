@@ -27,7 +27,7 @@ const StyledLink = styled(Link)`
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
-	margin: 5px 0; 
+	margin: 5px 0;
 	font-family: 'Patrick Hand', cursive;
 	font-size: 17px;
 	letter-spacing: 1.5px;
@@ -38,7 +38,7 @@ export const StyledNavBar = () => {
 	const dispatch = useDispatch();
 	const [isOpen, setIsOpen] = useState(false);
 	const accessToken = useSelector((store) => store.user.accessToken);
-	const navigate= useNavigate();
+	const navigate = useNavigate();
 
 	const logout = () => {
 		batch(() => {
@@ -46,7 +46,7 @@ export const StyledNavBar = () => {
 			dispatch(users.actions.setUserId(null));
 			dispatch(users.actions.setAccessToken(null));
 			dispatch(users.actions.setError(null));
-		})
+		});
 		navigate('/');
 	};
 
@@ -60,19 +60,31 @@ export const StyledNavBar = () => {
 			/>
 			{isOpen && (
 				<StyledList>
-					<StyledLink to='/' onClick={() => setIsOpen(false)}>Home</StyledLink>
+					<StyledLink to='/' onClick={() => setIsOpen(false)}>
+						Home
+					</StyledLink>
 					{!accessToken && (
-					<>
-					<StyledLink to='/signin' onClick={() => setIsOpen(false)}>Sign in</StyledLink>
-					<StyledLink to='/signup' onClick={() => setIsOpen(false)}>Sign up</StyledLink>
-					</>
+						<>
+							<StyledLink to='/signin' onClick={() => setIsOpen(false)}>
+								Sign in
+							</StyledLink>
+							<StyledLink to='/signup' onClick={() => setIsOpen(false)}>
+								Sign up
+							</StyledLink>
+						</>
 					)}
 					{accessToken && (
-						<> 
-					<StyledLink to='/recipes' onClick={() => setIsOpen(false)}>All recipes</StyledLink>
-					<StyledLink to='/profile/{userId}' onClick={() => setIsOpen(false)}>My profile</StyledLink>
-					<StyledButton onClick={() => logout()}>Log out</StyledButton>
-					</>
+						<>
+							<StyledLink to='/recipes' onClick={() => setIsOpen(false)}>
+								All recipes
+							</StyledLink>
+							<StyledLink
+								to='/profile/{userId}'
+								onClick={() => setIsOpen(false)}>
+								My profile
+							</StyledLink>
+							<StyledButton onClick={() => logout()}>Log out</StyledButton>
+						</>
 					)}
 				</StyledList>
 			)}

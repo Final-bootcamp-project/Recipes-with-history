@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { StyledContainer } from './styling/StyledContainer';
 import { Styledh1 } from './styling/StyledText';
 
-// import CreateRecipe from './CreateRecipe';
-// import LoadingAnimation from './Loader';
 import { RecipeCard } from './RecipeCard';
 import { recipe } from '../reducers/recipes.js';
 import { users } from '../reducers/users.js';
@@ -18,7 +16,6 @@ import { API_URL } from '../utils/urls';
 const Recipes = () => {
 	const navigate = useNavigate();
 	const accessToken = useSelector((store) => store.user.accessToken);
-	// const loading = useSelector((store) => store.loading.loading);
 	const recipes = useSelector((store) => store.recipe.items);
 	const dispatch = useDispatch();
 

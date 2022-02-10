@@ -17,8 +17,6 @@ export const addRecipe = async (req, res) => {
 			accessToken: req.header('Authorization'),
 		});
 
-		// const queriedUser = await User.findById(userId);
-
 		const newRecipe = await new Recipe({
 			title,
 			ingredients,

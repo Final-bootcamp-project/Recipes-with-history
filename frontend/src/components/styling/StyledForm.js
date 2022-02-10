@@ -1,4 +1,3 @@
-// import React from 'react';
 import styled from 'styled-components';
 
 export const StyledForm = styled.form`
@@ -6,7 +5,7 @@ export const StyledForm = styled.form`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 80%;
+	width: 90%;
 	height: auto;
 	background-color: #ceb6ce;
 	border: 2px solid purple;
@@ -19,5 +18,9 @@ export const StyledForm = styled.form`
 
 	@media (min-width: 768px) {
 		width: 60%;
+		margin: auto;
+	}
+	@media (min-width: 1024px) {
+		width: 30%;
 	}
 `;

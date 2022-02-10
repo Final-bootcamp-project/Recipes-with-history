@@ -6,6 +6,7 @@ import { StyledButton } from './styling/StyledButton.js';
 import { StyledForm } from './styling/StyledForm.js';
 import { StyledLabel } from './styling/StyledLabel.js';
 import { StyledInput } from './styling/StyledInput.js';
+import { StyledFormWrapper } from './styling/StyledFormWrapper.js';
 
 import { users } from '../reducers/users.js';
 
@@ -49,13 +50,15 @@ const SignIn = () => {
 						dispatch(users.actions.setAccessToken(json.response.accessToken));
 						dispatch(users.actions.setError(null));
 					});
-					localStorage.setItem('user', JSON.stringify({
-            username: json.response.username,
-            accessToken: json.response.accessToken,
-            userId: json.response.userId
-          }))
-					// console.log(json.response);
-					navigate('/profile/:userId'); 
+					localStorage.setItem(
+						'user',
+						JSON.stringify({
+							username: json.response.username,
+							accessToken: json.response.accessToken,
+							userId: json.response.userId,
+						})
+					);
+					navigate('/profile/:userId');
 				} else {
 					dispatch(users.actions.setUserId(null));
 					dispatch(users.actions.setUsername(null));
@@ -69,29 +72,30 @@ const SignIn = () => {
 	};
 
 	return (
-		//loading === false && (
-		<StyledForm onSubmit={(event) => handleSubmit(event)}>
-			<StyledLabel htmlFor='usernameInput'>
-				username
-				<StyledInput
-					id='usernameInput'
-					type='text'
-					value={username}
-					onChange={(event) => setUsername(event.target.value)}
-				/>
-			</StyledLabel>
-			<StyledLabel htmlFor='passwordInput'>
-				password
-				<StyledInput
-					id='passwordInput'
-					type='password'
-					value={password}
-					onChange={(event) => setPassword(event.target.value)}
-				/>
-			</StyledLabel>
-			<StyledButton type='submit'>Sign in </StyledButton>
-		</StyledForm>
-	); //)
+		<StyledFormWrapper>
+			<StyledForm onSubmit={(event) => handleSubmit(event)}>
+				<StyledLabel htmlFor='usernameInput'>
+					username
+					<StyledInput
+						id='usernameInput'
+						type='text'
+						value={username}
+						onChange={(event) => setUsername(event.target.value)}
+					/>
+				</StyledLabel>
+				<StyledLabel htmlFor='passwordInput'>
+					password
+					<StyledInput
+						id='passwordInput'
+						type='password'
+						value={password}
+						onChange={(event) => setPassword(event.target.value)}
+					/>
+				</StyledLabel>
+				<StyledButton type='submit'>Sign in </StyledButton>
+			</StyledForm>
+		</StyledFormWrapper>
+	);
 };
 
 export default SignIn;

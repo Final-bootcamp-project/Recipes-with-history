@@ -1,6 +1,6 @@
-import { User } from '../models/User.js'
+import { User } from '../models/User.js';
 
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
 
 export const signUp = async (req, res) => {
 	const { name, email, username, password } = req.body;
@@ -8,7 +8,7 @@ export const signUp = async (req, res) => {
 		const salt = bcrypt.genSaltSync();
 		// a condition for creating a password
 		if (password.length < 6 || username.length < 5) {
-			console.log('user could not be created')
+			console.log('user could not be created');
 			//redirecting to catch
 			throw 'Password must be at least 6 characters long and username must be longer than 5 characters';
 		}
@@ -19,18 +19,19 @@ export const signUp = async (req, res) => {
 			password: bcrypt.hashSync(password, salt),
 		}).save();
 		res.status(201).json({
-			response: { 
-				username: newUser.username, 
-				userId: newUser._id 
+			response: {
+				username: newUser.username,
+				userId: newUser._id,
 			},
 			success: true,
 		});
 	} catch (error) {
 		res.status(400).json({
 			response: {
-				error, 
-				message: 'No user could be created' },
+				error,
+				message: 'No user could be created',
+			},
 			success: false,
-		})
+		});
 	}
-}
+};

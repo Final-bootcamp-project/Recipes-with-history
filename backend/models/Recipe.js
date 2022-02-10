@@ -46,6 +46,3 @@ const RecipeSchema = mongoose.Schema({
 
 // Mongoose model which includes the Recipe schema
 export const Recipe = mongoose.model('Recipe', RecipeSchema);
-export const LikedRecipe = mongoose.model('LikedRecipe', RecipeSchema);
-
-

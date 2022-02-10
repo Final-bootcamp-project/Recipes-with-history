@@ -29,10 +29,6 @@ app.use(cors());
 app.use(express.json());
 
 //-----------------ENDPOINTS----------------------
-// app.get('/', (req, res) => {
-// 	res.send('Welcome to Jessica and Rebeccas recipe bank!');
-// });
-
 app.get('/', recipeList);
 
 //----------- ALL POSSIBLE ROUTES
@@ -43,20 +39,18 @@ app.get('/endpoints', async (req, res) => {
 //---------- USER ENDPOINTS
 app.post('/signup', signUp);
 app.post('/signin', signIn);
-app.get('/profile/:userId', authenticateUser, userRecipes); //authenticateUser
+app.get('/profile/:userId', authenticateUser, userRecipes);
 
 //---------- VIEW RANDOM RECIPES ENDPOINT, GET
-app.get('/recipelist', recipeList); // 20 recipes for guest user
+app.get('/recipelist', recipeList); // 4 recipes for guest user
 
 //---------- RECIPE ENDPOINTS, GET
-app.get('/', findRecipes); //recipes per user
 app.get('/recipes', authenticateUser, allRecipes);
 
 //---------- RECIPE ENDPOINTS, POST
 app.post('/recipes', authenticateUser, addRecipe);
 app.post('/recipes/:recipeId/like', authenticateUser, likeRecipe);
 app.post('/profile/:userId', authenticateUser, addRecipe);
-
 
 // Start the server
 app.listen(port, () => {

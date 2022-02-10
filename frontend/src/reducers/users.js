@@ -1,26 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = localStorage.getItem('user')
-  ? {
-    id: JSON.parse(localStorage.getItem('user')).id,
-    username: JSON.parse(localStorage.getItem('user')).username,
-		name: JSON.parse(localStorage.getItem('user')).name,
-    accessToken: JSON.parse(localStorage.getItem('user')).accessToken,
-    items: [], 
-    error: null,
-		likedRecipes: [],
-		userRecipes: [],
-  }
-  : {
-    id: null,
-    username: null,
-		name: null,
-    accessToken: null,
-    items: [],
-    errors: null,
-		likedRecipes: [],
-		userRecipes: [],
-  }
+	? {
+			id: JSON.parse(localStorage.getItem('user')).id,
+			username: JSON.parse(localStorage.getItem('user')).username,
+			name: JSON.parse(localStorage.getItem('user')).name,
+			accessToken: JSON.parse(localStorage.getItem('user')).accessToken,
+			items: [],
+			error: null,
+			likedRecipes: [],
+			userRecipes: [],
+	  }
+	: {
+			id: null,
+			username: null,
+			name: null,
+			accessToken: null,
+			items: [],
+			errors: null,
+			likedRecipes: [],
+			userRecipes: [],
+	  };
 
 //every state contains of three things: name, initialState(object/array), reducers (anonymous function)
 export const users = createSlice({
@@ -28,10 +28,9 @@ export const users = createSlice({
 	initialState,
 	reducers: {
 		//this is built as an object, so we construct its properties, inside
-		// what to keep, and what to change? /Rebecca
+
 		addUser: (store, action) => {
-			//we need to pass data about "what to do"
-			store.items = [...store.items, action.payload]; // this makes it immutable, by making a new array
+			store.items = [...store.items, action.payload];
 		},
 		editUser: (store, action) => {
 			store.items = action.payload;

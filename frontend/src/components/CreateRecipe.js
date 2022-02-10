@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch, batch } from 'react-redux';
-// import { useNavigate, Link } from 'react-router-dom';
-import styled from 'styled-components';
-// import { Modal } from 'react-responsive-modal';
 
 import { StyledForm } from './styling/StyledForm.js';
 import { StyledLabel } from './styling/StyledLabel.js';
@@ -13,8 +10,6 @@ import { StyledSelect } from './styling/StyledSelect.js';
 import { recipe } from '../reducers/recipes.js';
 import { API_URL } from '../utils/urls.js';
 
-
-
 // ----------- ADD RECIPE TO
 
 const CreateRecipe = () => {
@@ -22,16 +17,10 @@ const CreateRecipe = () => {
 	const [title, setTitle] = useState('');
 	const [cookingSteps, setCookingSteps] = useState('');
 	const [ingredients, setIngredients] = useState('');
-	// const [open, setOpen] = useState(false);
-	// const [uploadedBy, setUploadedBy] = useState('');
+
 	const [category, setCategory] = useState('');
 	const [recipeCreator, setRecipeCreator] = useState('');
 
-	// const onOpenModal = () => setOpen(true);
-	// const onCloseModal = () => setOpen(false);
-
-	// const loading = useSelector((store) => store.loading.loading);
-	// const recipes = useSelector((store) => store.recipes.items);
 	const accessToken = useSelector((store) => store.user.accessToken);
 	const userId = useSelector((store) => store.user.userId);
 	const username = useSelector((store) => store.user.username);
@@ -39,7 +28,6 @@ const CreateRecipe = () => {
 	const dispatch = useDispatch();
 
 	const addRecipe = (accessToken, userId, recipe) => {
-		// return (dispatch) => {
 		const options = {
 			method: 'POST',
 			headers: {
@@ -59,7 +47,6 @@ const CreateRecipe = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.success) {
-					// console.log('Nytt recept sparat!', data);
 					batch(() => {
 						dispatch(recipe.actions.addRecipe(accessToken, userId));
 						dispatch(recipe.actions.setError(null));
@@ -75,7 +62,6 @@ const CreateRecipe = () => {
 			.catch((error) => {
 				console.error(error);
 			});
-		// };
 	};
 	const onAddRecipe = (accessToken, userId, recipe) => {
 		dispatch(addRecipe(accessToken, userId, recipe));
