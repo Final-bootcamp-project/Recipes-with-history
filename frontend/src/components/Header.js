@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { StyledNavBar } from './styling/StyledNavBar';
+import { Styledh1 } from './styling/StyledText';
 //import { StyledSearchBar } from './styling/StyledSearchBar';
 //import { recipe } from '../reducers/recipes';
 
@@ -69,7 +70,7 @@ export const HeaderMenu = () => {
 		<>
 			<Header>
 				<StyledNavBar />
-				<h1>My saved recipes</h1>
+				<Styledh1>Recipes with memories</Styledh1>
 				{/* <StyledSearchBar
 					searchQuery={searchQuery}
 					setSearchQuery={setSearchQuery}

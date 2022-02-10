@@ -3,22 +3,13 @@ import { useSelector, useDispatch, batch } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
 
+import { Styledh3, Styledh4, StyledP } from './styling/StyledText.js'
+import { LikeButton } from './styling/StyledButton.js';
+
 import { recipe } from '../reducers/recipes';
 import { users } from '../reducers/users';
 
 import { API_URL } from '../utils/urls';
-
-const LikeButton = styled.button`
-	display: inline-block;
-	border-radius: 50%;
-	width: 50px;
-	height: 50px;
-
-	:active {
-		color: pink;
-		border: 3px solid white;
-	}
-`;
 
 const RecipeContainer = styled.div`
 display: grid;
@@ -29,6 +20,11 @@ width: 100%;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 	}
+
+@media (min-width: 1228px) {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
 `
 
 const RecipeWrapper = styled.article`
@@ -44,21 +40,6 @@ const RecipeWrapper = styled.article`
 	font-family: 'Patrick Hand', cursive;
 	letter-spacing: 0.8px;		
 	`;
-
-	const Styledh3 = styled.h3`
-	font-size: 25px;
-	font-weight: 30px;
-	letter-spacing: 1.5px;
-	`
-
-	const Styledh4 = styled.h4`
-	font-size: 20px;
-	border-top: 1px solid grey;
-	`
-	const StyledP = styled.p`
-	font-size: 15px;
-	`
-
 
 // --------------------DON'T TOUCH!! IT WORKS WITH HOMEPAGE!
 export const RecipeCard = ({ recipeprop }) => {

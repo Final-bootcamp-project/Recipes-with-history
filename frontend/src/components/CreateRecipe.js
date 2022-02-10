@@ -8,23 +8,12 @@ import { StyledForm } from './styling/StyledForm.js';
 import { StyledLabel } from './styling/StyledLabel.js';
 import { StyledInput } from './styling/StyledInput.js';
 import { StyledButton } from './styling/StyledButton.js';
+import { StyledSelect } from './styling/StyledSelect.js';
 
 import { recipe } from '../reducers/recipes.js';
 import { API_URL } from '../utils/urls.js';
 
-const StyledSelect = styled.select`
-	border: none;
-	padding: 10px 15px;
-	margin: 0 0 20px;
-	height: 40px;
-	display: block;
-	border-radius: 5px;
-	font-size: 18px;
-	background-color: #d5f5f2;
-	font-weight: 800;
-	font-family: 'Patrick Hand', cursive;
-	text-align: center;
-`;
+
 
 // ----------- ADD RECIPE TO
 

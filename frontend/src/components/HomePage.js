@@ -2,8 +2,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch, batch } from 'react-redux';
 
+import { Styledh1 } from './styling/StyledText';
 import { StyledContainer } from './styling/StyledContainer'
 import { RecipeCard } from './RecipeCard.js';
+
 import { recipe } from '../reducers/recipes';
 
 // import { API_URL } from '../utils/urls.js';
@@ -41,13 +43,14 @@ const HomePage = () => {
 	return (
 			<StyledContainer>
 			{!accessToken ? (
-				<>
-				<h1>Hej och välkommen till vår sida för nya och gamla recept!</h1>
+			<>
+				<Styledh1>Hej & välkommen! <br/>Här får du ta del av de senaste recepten som lagts till i vår samling, för nya & gamla recept!</Styledh1>
 				<RecipeCard recipeprop={recipes} />
-				</>
+			</>
 			) : (
 			<>
-			<RecipeCard recipeprop={recipes} />
+				<Styledh1>Här finns alla uppladdade recept att ta del av!</Styledh1>
+				<RecipeCard recipeprop={recipes} />
 			</>
 			)}
 		</StyledContainer>

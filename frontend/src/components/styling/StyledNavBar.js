@@ -11,6 +11,7 @@ const StyledNav = styled.div`
 	display: flex;
 	flex.direction: column;
 	width: auto;
+	height: auto;
 	background: rgba(173, 216, 230, 0.8);
 `;
 
@@ -19,6 +20,7 @@ const StyledList = styled.ul`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	margin: 0 10px;
 `;
 
 const StyledLink = styled(Link)`

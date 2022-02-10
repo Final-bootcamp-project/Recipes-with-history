@@ -4,6 +4,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { StyledContainer } from './styling/StyledContainer';
+
 // import CreateRecipe from './CreateRecipe';
 // import LoadingAnimation from './Loader';
 import { RecipeCard } from './RecipeCard';
@@ -56,11 +58,9 @@ const Recipes = () => {
 			});
 	};
 	return (
-			<div>
-					<RecipeCard recipeprop={recipes} />
-
-		</div>
+		<StyledContainer>
+			<RecipeCard recipeprop={recipes} />
+		</StyledContainer>
 	);
-
 };
 export default Recipes;

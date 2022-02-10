@@ -1,7 +1,12 @@
 import React from 'react';
+import { StyledContainer } from './styling/StyledContainer'
 
 const NotFound = () => {
-  return <h1>Not found... please go to another page for delicious recipes! </h1>;
+    return (
+      <StyledContainer>
+        <h1>Not found...<br/> Please go to another page for delicious recipes! </h1>
+      </StyledContainer>
+      )
 };
 
 export default NotFound;
