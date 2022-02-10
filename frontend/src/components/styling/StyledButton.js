@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledButton = styled.button`
 	width: 50px;
-	background-color: whitesmoke;
+	background-color: #eadfeb;
 	border-radius: 10px;
 	padding: 5px 15px;
 	width: auto;

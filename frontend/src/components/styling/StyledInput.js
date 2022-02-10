@@ -8,7 +8,7 @@ background: rgb(230, 230, 230);
 border: none;
 border-radius: 3px;
 font-family: 'Patrick Hand', cursive;
-font-size: 15px;
+font-size: 17px;
 font-weight: 30px;
 letter-spacing: 1.5px;
 `;

@@ -72,7 +72,7 @@ const SignIn = () => {
 		//loading === false && (
 		<StyledForm onSubmit={(event) => handleSubmit(event)}>
 			<StyledLabel htmlFor='usernameInput'>
-				Username
+				username
 				<StyledInput
 					id='usernameInput'
 					type='text'
@@ -81,7 +81,7 @@ const SignIn = () => {
 				/>
 			</StyledLabel>
 			<StyledLabel htmlFor='passwordInput'>
-				Password
+				password
 				<StyledInput
 					id='passwordInput'
 					type='password'

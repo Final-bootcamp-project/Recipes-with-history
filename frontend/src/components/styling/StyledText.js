@@ -17,5 +17,6 @@ export const Styledh4 = styled.h4`
 	border-top: 1px solid grey;
 	`
 export const StyledP = styled.p`
-	font-size: 15px;
+	font-size: 17px;
+	letter-spacing: 1px;
   `

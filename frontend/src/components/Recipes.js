@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { StyledContainer } from './styling/StyledContainer';
+import { Styledh1 } from './styling/StyledText';
 
 // import CreateRecipe from './CreateRecipe';
 // import LoadingAnimation from './Loader';
@@ -59,6 +60,7 @@ const Recipes = () => {
 	};
 	return (
 		<StyledContainer>
+			<Styledh1>Här finns alla uppladdade recept att ta del av!</Styledh1>
 			<RecipeCard recipeprop={recipes} />
 		</StyledContainer>
 	);

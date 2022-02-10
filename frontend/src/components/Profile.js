@@ -4,6 +4,8 @@ import { useNavigate, Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 // import { Modal } from 'react-responsive-modal';
 
+import { Styledh2, StyledP } from './styling/StyledText';
+
 import { users } from '../reducers/users';
 import { recipe } from '../reducers/recipes';
 import { API_PROFILE, API_URL } from '../utils/urls';
@@ -102,11 +104,11 @@ const Profile = () => {
 	return (
 		<ProfileWrapper>
 			<WelcomeText>
-				<h2>Welcome {username}!</h2>
-				<p>
+				<Styledh2>Welcome {username}!</Styledh2>
+				<StyledP>
 					Make yourself at home while you reminisce over the amazing recipes
 					you've uploaded!
-				</p>
+				</StyledP>
 			</WelcomeText>
 
 			<CreateRecipe />

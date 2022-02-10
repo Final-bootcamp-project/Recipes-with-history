@@ -44,12 +44,12 @@ const HomePage = () => {
 			<StyledContainer>
 			{!accessToken ? (
 			<>
-				<Styledh1>Hej & välkommen! <br/>Här får du ta del av de senaste recepten som lagts till i vår samling, för nya & gamla recept!</Styledh1>
+				<Styledh1>Hej & välkommen! <br/>Här får du ta del av de senaste 20 recepten som lagts till i vår samling,<br/> för nya & gamla recept!</Styledh1>
 				<RecipeCard recipeprop={recipes} />
 			</>
 			) : (
 			<>
-				<Styledh1>Här finns alla uppladdade recept att ta del av!</Styledh1>
+				<Styledh1>Home, <br/>Här finns alla uppladdade recept att ta del av!</Styledh1>
 				<RecipeCard recipeprop={recipes} />
 			</>
 			)}

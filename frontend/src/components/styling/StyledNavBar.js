@@ -27,7 +27,7 @@ const StyledLink = styled(Link)`
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
-	margin-top: 10px; 
+	margin: 5px 0; 
 	font-family: 'Patrick Hand', cursive;
 	font-size: 17px;
 	letter-spacing: 1.5px;
