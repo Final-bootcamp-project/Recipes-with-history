@@ -23,7 +23,7 @@ const SignIn = () => {
 
 	useEffect(() => {
 		if (accessToken) {
-			navigate('/recipes');
+			navigate('recipes');
 		}
 	}, [accessToken, navigate]);
 

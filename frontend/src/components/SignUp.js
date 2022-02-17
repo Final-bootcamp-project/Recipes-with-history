@@ -42,7 +42,7 @@ const SignUp = () => {
 						dispatch(users.actions.setAccessToken(json.response.accessToken));
 						dispatch(users.actions.setError(null));
 					});
-					navigate('/signin');
+					navigate('signin');
 				} else {
 					batch(() => {
 						dispatch(users.actions.setUsername(null));
