@@ -7,6 +7,7 @@ import { StyledContainer } from './styling/StyledContainer';
 import { RecipeCard } from './RecipeCard.js';
 
 import { recipe } from '../reducers/recipes';
+import { API_URL } from '../utils/urls';
 
 const HomePage = () => {
 	const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const HomePage = () => {
 	const accessToken = useSelector((store) => store.user.accessToken);
 
 	useEffect(() => {
-		fetch('http://localhost:8090/recipelist')
+		fetch(API_URL)
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.success) {
