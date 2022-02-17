@@ -40,7 +40,7 @@ const SignIn = () => {
 			},
 			body: JSON.stringify({ username, password }),
 		};
-		fetch(API_URL('/signin'), options)
+		fetch(API_URL('signin'), options)
 			.then((res) => res.json())
 			.then((json) => {
 				if (json.success) {

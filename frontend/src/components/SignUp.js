@@ -14,7 +14,7 @@ const SignUp = () => {
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -32,7 +32,7 @@ const SignUp = () => {
 			body: JSON.stringify({ name, username, password, email }),
 		};
 
-		fetch(API_URL('/signup'), options)
+		fetch(API_URL('signup'), options)
 			.then((response) => response.json())
 			.then((json) => {
 				if (json.success) {
@@ -42,7 +42,7 @@ const SignUp = () => {
 						dispatch(users.actions.setAccessToken(json.response.accessToken));
 						dispatch(users.actions.setError(null));
 					});
-					navigate("/signin")
+					navigate('/signin');
 				} else {
 					batch(() => {
 						dispatch(users.actions.setUsername(null));
@@ -56,45 +56,43 @@ const SignUp = () => {
 	};
 
 	return (
-			<div>
-					<StyledForm onSubmit={(event) => handleSubmit(event)}>
-						<label htmlFor='nameInput'>name:</label>
-						<StyledInput
-							id='nameInput'
-							type='text'
-							value={name}
-							onChange={(event) => setName(event.target.value)}
-						/>
+		<div>
+			<StyledForm onSubmit={(event) => handleSubmit(event)}>
+				<label htmlFor='nameInput'>name:</label>
+				<StyledInput
+					id='nameInput'
+					type='text'
+					value={name}
+					onChange={(event) => setName(event.target.value)}
+				/>
 
-						<label htmlFor='usernameInput'>username:</label>
-						<StyledInput
-							id='usernameInput'
-							type='text'
-							value={username}
-							onChange={(event) => setUsername(event.target.value)}
-						/>
+				<label htmlFor='usernameInput'>username:</label>
+				<StyledInput
+					id='usernameInput'
+					type='text'
+					value={username}
+					onChange={(event) => setUsername(event.target.value)}
+				/>
 
-						<label htmlFor='emailInput'>email:</label>
-						<StyledInput
-							id='emailInput'
-							type='email'
-							value={email}
-							onChange={(event) => setEmail(event.target.value)}
-						/>
+				<label htmlFor='emailInput'>email:</label>
+				<StyledInput
+					id='emailInput'
+					type='email'
+					value={email}
+					onChange={(event) => setEmail(event.target.value)}
+				/>
 
-						<label htmlFor='passwordInput'>password:</label>
-						<StyledInput
-							id='passwordInput'
-							type='password'
-							value={password}
-							onChange={(event) => setPassword(event.target.value)}
-						/>
-						<StyledButton type='submit'>Create user</StyledButton>
-					</StyledForm>
-				</div>
-			)
-
-	
+				<label htmlFor='passwordInput'>password:</label>
+				<StyledInput
+					id='passwordInput'
+					type='password'
+					value={password}
+					onChange={(event) => setPassword(event.target.value)}
+				/>
+				<StyledButton type='submit'>Create user</StyledButton>
+			</StyledForm>
+		</div>
+	);
 };
 
 export default SignUp;
