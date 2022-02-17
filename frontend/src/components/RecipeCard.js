@@ -1,15 +1,8 @@
 import React from 'react';
-import { useSelector, batch } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
 
 import { Styledh2, Styledh3, Styledh4, StyledP } from './styling/StyledText.js';
-import { LikeButton } from './styling/StyledButton.js';
-
-import { recipe } from '../reducers/recipes.js';
-import { users } from '../reducers/users.js';
-
-import { API_URL } from '../utils/urls';
 
 const RecipeContainer = styled.div`
 	display: grid;
@@ -40,43 +33,43 @@ const RecipeWrapper = styled.article`
 `;
 
 export const RecipeCard = ({ recipeprop }) => {
-	const accessToken = useSelector((store) => store.user.accessToken);
+	// const accessToken = useSelector((store) => store.user.accessToken);
 
-	const likeRecipe = (accessToken, checkedAt, userId, recipeId) => {
-		return (dispatch) => {
-			const options = {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: accessToken,
-				},
-				body: JSON.stringify({
-					checkedAt,
-					user: userId,
-					recipe: recipeId,
-				}),
-			};
-			fetch(API_URL('/recipes/:recipeId/like'), options)
-				.then((res) => res.json())
-				.then((data) => {
-					console.log(data);
-					if (data.success) {
-						batch(() => {
-							dispatch(recipe.actions.setLike(accessToken, userId, recipeId));
-							dispatch(recipe.actions.setError(null));
-						});
-					} else {
-						batch(() => {
-							dispatch(recipe.actions.setLike([]));
-							dispatch(recipe.actions.setError(data.response));
-						});
-					}
-				})
-				.catch((error) => {
-					console.error(error);
-				});
-		};
-	};
+	// const likeRecipe = (accessToken, checkedAt, userId, recipeId) => {
+	// 	return (dispatch) => {
+	// 		const options = {
+	// 			method: 'POST',
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 				Authorization: accessToken,
+	// 			},
+	// 			body: JSON.stringify({
+	// 				checkedAt,
+	// 				user: userId,
+	// 				recipe: recipeId,
+	// 			}),
+	// 		};
+	// 		fetch(API_URL('/recipes/:recipeId/like'), options)
+	// 			.then((res) => res.json())
+	// 			.then((data) => {
+	// 				console.log(data);
+	// 				if (data.success) {
+	// 					batch(() => {
+	// 						dispatch(recipe.actions.setLike(accessToken, userId, recipeId));
+	// 						dispatch(recipe.actions.setError(null));
+	// 					});
+	// 				} else {
+	// 					batch(() => {
+	// 						dispatch(recipe.actions.setLike([]));
+	// 						dispatch(recipe.actions.setError(data.response));
+	// 					});
+	// 				}
+	// 			})
+	// 			.catch((error) => {
+	// 				console.error(error);
+	// 			});
+	// 	};
+	// };
 
 	return (
 		<RecipeContainer>

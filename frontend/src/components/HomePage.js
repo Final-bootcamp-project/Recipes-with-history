@@ -14,10 +14,6 @@ const HomePage = () => {
 	const accessToken = useSelector((store) => store.user.accessToken);
 
 	useEffect(() => {
-		fetchGuestRecipes();
-	}, []);
-
-	const fetchGuestRecipes = () => {
 		fetch('http://localhost:8090/recipelist')
 			.then((res) => res.json())
 			.then((data) => {
@@ -25,7 +21,7 @@ const HomePage = () => {
 					batch(() => {
 						dispatch(recipe.actions.setRecipe(data.response));
 						dispatch(recipe.actions.setError(null));
-						console.log(data.response);
+						console.log('please work');
 					});
 				} else {
 					batch(() => {
@@ -34,7 +30,7 @@ const HomePage = () => {
 					});
 				}
 			});
-	};
+	}, [dispatch]);
 
 	return (
 		<StyledContainer>

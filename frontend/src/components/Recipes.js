@@ -9,7 +9,6 @@ import { Styledh1 } from './styling/StyledText';
 
 import { RecipeCard } from './RecipeCard';
 import { recipe } from '../reducers/recipes.js';
-import { users } from '../reducers/users.js';
 
 import { API_URL } from '../utils/urls';
 
@@ -27,10 +26,6 @@ const Recipes = () => {
 	}, [accessToken, navigate]);
 
 	useEffect(() => {
-		fetchRecipes();
-	}, [accessToken]);
-
-	const fetchRecipes = () => {
 		const options = {
 			method: 'GET',
 			headers: {
@@ -54,7 +49,8 @@ const Recipes = () => {
 			.catch((error) => {
 				console.error(error);
 			});
-	};
+	}, [accessToken, dispatch]);
+
 	return (
 		<StyledContainer>
 			<Styledh1>Här finns alla uppladdade recept att ta del av!</Styledh1>

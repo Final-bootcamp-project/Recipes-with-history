@@ -7,13 +7,13 @@ import { StyledInput } from './styling/StyledInput.js';
 import { StyledButton } from './styling/StyledButton.js';
 import { StyledSelect } from './styling/StyledSelect.js';
 
-import { recipe } from '../reducers/recipes.js';
+import { recipe } from '../reducers/recipes';
 import { API_URL } from '../utils/urls.js';
 
 // ----------- ADD RECIPE TO
 
 const CreateRecipe = () => {
-	const [recipe, setRecipe] = useState({});
+	const [newRecipe, setNewRecipe] = useState({});
 	const [title, setTitle] = useState('');
 	const [cookingSteps, setCookingSteps] = useState('');
 	const [ingredients, setIngredients] = useState('');
@@ -27,7 +27,7 @@ const CreateRecipe = () => {
 
 	const dispatch = useDispatch();
 
-	const addRecipe = (accessToken, userId, recipe) => {
+	const addRecipe = (accessToken, userId) => {
 		const options = {
 			method: 'POST',
 			headers: {
@@ -63,9 +63,9 @@ const CreateRecipe = () => {
 				console.error(error);
 			});
 	};
-	const onAddRecipe = (accessToken, userId, recipe) => {
-		dispatch(addRecipe(accessToken, userId, recipe));
-		setRecipe(''); // clears the input
+	const onAddRecipe = (accessToken, userId) => {
+		dispatch(addRecipe(accessToken, userId, newRecipe));
+		setNewRecipe(''); // clears the input
 	};
 
 	return (
