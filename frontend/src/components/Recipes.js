@@ -35,15 +35,12 @@ const Recipes = () => {
 		fetch(API_URL('recipes'), options)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log('hello', data);
 				if (data.success) {
 					dispatch(recipe.actions.setRecipe(data.response));
 					dispatch(recipe.actions.setError(null));
-					console.log('YES!');
 				} else {
 					dispatch(recipe.actions.setRecipe(null));
 					dispatch(recipe.actions.setError(data.response));
-					console.log('no...');
 				}
 			})
 			.catch((error) => {

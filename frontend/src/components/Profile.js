@@ -54,7 +54,6 @@ const Profile = () => {
 					batch(() => {
 						dispatch(users.actions.setUser(data.response));
 						dispatch(users.actions.setError(null));
-						console.log(data.response);
 					});
 				} else {
 					batch(() => {

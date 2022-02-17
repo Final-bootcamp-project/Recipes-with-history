@@ -50,7 +50,6 @@ const CreateRecipe = () => {
 					batch(() => {
 						dispatch(recipe.actions.addRecipe(accessToken, userId));
 						dispatch(recipe.actions.setError(null));
-						console.log(data);
 					});
 				} else {
 					batch(() => {

@@ -49,7 +49,6 @@ const SignUp = () => {
 						dispatch(users.actions.setName(null));
 						dispatch(users.actions.setAccessToken(null));
 						dispatch(users.actions.setError(json.response));
-						console.log(json.response);
 					});
 				}
 			});
