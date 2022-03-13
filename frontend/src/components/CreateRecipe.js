@@ -43,7 +43,7 @@ const CreateRecipe = () => {
 				user: userId,
 			}),
 		};
-		fetch(API_URL('/recipes'), options)
+		fetch(API_URL('recipes'), options)
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.success) {
