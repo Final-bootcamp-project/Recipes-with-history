@@ -73,7 +73,7 @@ export const RecipeCard = ({ recipeprop }) => {
 
 	return (
 		<RecipeContainer>
-			{recipeprop.map((recipe) => (
+			{recipeprop?.map((recipe) => (
 				<RecipeWrapper key={recipe._id}>
 					<Styledh2>{recipe.title}</Styledh2>
 					<Styledh3>Ingredients: </Styledh3>

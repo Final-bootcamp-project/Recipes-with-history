@@ -25,7 +25,7 @@ export const addRecipe = async (req, res) => {
 			uploadedBy: user,
 			recipeCreator,
 		}).save();
-
+		console.log(newRecipe);
 		//If successful, status code = successful:
 		res.status(201).json({
 			response: newRecipe,
@@ -39,5 +39,6 @@ export const addRecipe = async (req, res) => {
 			success: false,
 			message: 'Recipe could not be created, please try again',
 		});
+		console.log(error);
 	}
 };
