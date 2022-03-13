@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useSelector, /*useDispatch batch*/ } from 'react-redux'; // batch makes the wrapped dispatches to render only once
-import { /*useParams*/, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux'; // batch makes the wrapped dispatches to render only once
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Styledh2, StyledP } from './styling/StyledText';
@@ -88,6 +88,7 @@ const Profile = () => {
 	// 			}
 	// 		});
 	// };
+	// 					REMEMBER TO IMPORT USEDISPATCH, USEPARAMS, AND BATCH
 
 	return (
 		<ProfileWrapper>
