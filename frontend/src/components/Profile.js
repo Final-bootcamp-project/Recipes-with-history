@@ -25,8 +25,6 @@ const WelcomeText = styled.div`
 `;
 
 const Profile = () => {
-	// const dispatch = useDispatch();
-	// const { userId } = useParams();
 	const navigate = useNavigate();
 
 	const username = useSelector((store) => store.user.username);
