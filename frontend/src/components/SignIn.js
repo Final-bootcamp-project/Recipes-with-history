@@ -23,7 +23,7 @@ const SignIn = () => {
 
 	useEffect(() => {
 		if (accessToken) {
-			navigate('recipes');
+			navigate('/recipes');
 		}
 	}, [accessToken, navigate]);
 
@@ -58,7 +58,7 @@ const SignIn = () => {
 							userId: json.response.userId,
 						})
 					);
-					navigate('/profile/:userId');
+					navigate('/recipes');
 				} else {
 					dispatch(users.actions.setUserId(null));
 					dispatch(users.actions.setUsername(null));

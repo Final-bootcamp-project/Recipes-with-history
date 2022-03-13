@@ -51,7 +51,7 @@ const App = () => {
 			<BrowserRouter>
 				<HeaderMenu />
 				<Routes>
-					<Route path='/' element={<HomePage />} />
+					<Route path='/' element={<HomePage />} exact />
 					<Route path='/signin' element={<SignIn />} />
 					<Route path='/signup' element={<SignUp />} />
 					<Route path='/recipes' element={<Recipes />} />

@@ -7,30 +7,44 @@ import { StyledContainer } from './styling/StyledContainer';
 import { RecipeCard } from './RecipeCard.js';
 
 import { recipe } from '../reducers/recipes';
-import { API_HOME } from '../utils/urls';
+import { API_HOME } from '../utils/urls.js';
 
 const HomePage = () => {
 	const dispatch = useDispatch();
 	const recipes = useSelector((store) => store.recipe.items);
 	const accessToken = useSelector((store) => store.user.accessToken);
 
-	useEffect(() => {
-		fetch(API_HOME)
-			.then((res) => res.json())
-			.then((data) => {
-				if (data.success) {
-					batch(() => {
-						dispatch(recipe.actions.setRecipe(data.response));
-						dispatch(recipe.actions.setError(null));
-					});
-				} else {
-					batch(() => {
-						dispatch(recipe.actions.setRecipe(null));
-						dispatch(recipe.actions.setError(data.response));
-					});
-				}
-			});
-	}, [dispatch]);
+	useEffect(
+		() => {
+			const options = {
+				method: 'GET',
+				headers: {
+					Authorization: accessToken,
+				},
+			};
+			fetch(API_HOME, options)
+				.then((res) => res.json())
+				.then((data) => {
+					if (data.success) {
+						batch(() => {
+							dispatch(recipe.actions.setRecipe(data.response));
+							dispatch(recipe.actions.setError(null));
+							console.log(data, 'yay!');
+						});
+					} else {
+						batch(() => {
+							dispatch(recipe.actions.setRecipe(null));
+							dispatch(recipe.actions.setError(data.response));
+							console.log('nope...');
+						});
+					}
+				})
+				.then(console.log('hej'));
+		},
+		[
+			/*dispatch, accessToken*/
+		]
+	);
 
 	return (
 		<StyledContainer>
@@ -39,8 +53,8 @@ const HomePage = () => {
 					<Styledh1>
 						Hej & välkommen! <br />
 						Här får du ta del av de senaste 4 recepten som lagts till i vår
-						samling,
-						<br /> för nya & gamla recept!
+						samling, <br />
+						för nya & gamla recept!
 					</Styledh1>
 					<RecipeCard recipeprop={recipes} />
 				</>

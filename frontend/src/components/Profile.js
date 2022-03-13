@@ -39,30 +39,30 @@ const Profile = () => {
 		}
 	}, [accessToken, navigate]);
 
-	useEffect(() => {
-		const options = {
-			method: 'GET',
-			headers: {
-				Authorization: accessToken,
-			},
-		};
+	// useEffect(() => {
+	// 	const options = {
+	// 		method: 'GET',
+	// 		headers: {
+	// 			Authorization: accessToken,
+	// 		},
+	// 	};
 
-		fetch(API_PROFILE(userId), options)
-			.then((res) => res.json())
-			.then((data) => {
-				if (data.success) {
-					batch(() => {
-						dispatch(users.actions.setUser(data.response));
-						dispatch(users.actions.setError(null));
-					});
-				} else {
-					batch(() => {
-						dispatch(users.actions.setUser(null));
-						dispatch(users.actions.setError(data.response));
-					});
-				}
-			});
-	}, [accessToken, dispatch, userId]);
+	// 	fetch(API_PROFILE(userId), options)
+	// 		.then((res) => res.json())
+	// 		.then((data) => {
+	// 			if (data.success) {
+	// 				batch(() => {
+	// 					dispatch(users.actions.setUser(data.response));
+	// 					dispatch(users.actions.setError(null));
+	// 				});
+	// 			} else {
+	// 				batch(() => {
+	// 					dispatch(users.actions.setUser(null));
+	// 					dispatch(users.actions.setError(data.response));
+	// 				});
+	// 			}
+	// 		});
+	// }, [accessToken, dispatch, userId]);
 
 	// const optionsUser = {
 	// 	method: 'GET',

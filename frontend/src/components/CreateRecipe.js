@@ -48,9 +48,10 @@ const CreateRecipe = () => {
 			.then((data) => {
 				if (data.success) {
 					batch(() => {
-						dispatch(recipe.actions.addRecipe(accessToken, userId));
-						dispatch(recipe.actions.setError(null));
+						dispatch(recipe.actions.addRecipe(accessToken, userId()));
+						dispatch(recipe.actions.setError(null()));
 					});
+					console.log(data, 'hejsan');
 				} else {
 					batch(() => {
 						dispatch(recipe.actions.setRecipe([]));

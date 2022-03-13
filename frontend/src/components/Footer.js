@@ -5,7 +5,7 @@ import { StyledP } from './styling/StyledText';
 
 const StyledFooter = styled.footer`
 	display: flex;
-	position: sticky;
+	position: fixed;
 	bottom: 0;
 	margin-bottom: 0;
 	align-items: center;
