@@ -14,37 +14,32 @@ const HomePage = () => {
 	const recipes = useSelector((store) => store.recipe.items);
 	const accessToken = useSelector((store) => store.user.accessToken);
 
-	useEffect(
-		() => {
-			const options = {
-				method: 'GET',
-				headers: {
-					Authorization: accessToken,
-				},
-			};
-			fetch(API_HOME, options)
-				.then((res) => res.json())
-				.then((data) => {
-					if (data.success) {
-						batch(() => {
-							dispatch(recipe.actions.setRecipe(data.response));
-							dispatch(recipe.actions.setError(null));
-							console.log(data, 'yay!');
-						});
-					} else {
-						batch(() => {
-							dispatch(recipe.actions.setRecipe(null));
-							dispatch(recipe.actions.setError(data.response));
-							console.log('nope...');
-						});
-					}
-				})
-				.then(console.log('hej'));
-		},
-		[
-			/*dispatch, accessToken*/
-		]
-	);
+	useEffect(() => {
+		const options = {
+			method: 'GET',
+			headers: {
+				Authorization: accessToken,
+			},
+		};
+		fetch(API_HOME, options)
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.success) {
+					batch(() => {
+						dispatch(recipe.actions.setRecipe(data.response));
+						dispatch(recipe.actions.setError(null));
+						console.log(data, 'yay!');
+					});
+				} else {
+					batch(() => {
+						dispatch(recipe.actions.setRecipe(null));
+						dispatch(recipe.actions.setError(data.response));
+						console.log('nope...');
+					});
+				}
+			})
+			.then(console.log('hej'));
+	}, [dispatch, accessToken]);
 
 	return (
 		<StyledContainer>

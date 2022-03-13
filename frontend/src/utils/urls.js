@@ -1,4 +1,4 @@
-export const API_HOME = 'http://localhost:8090';
+export const API_HOME = 'https://final-project-jessica-rebecca.herokuapp.com';
 
 export const API_URL = (slug) => `${API_HOME}/${slug}`;
 

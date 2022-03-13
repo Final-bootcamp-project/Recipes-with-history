@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch, batch } from 'react-redux'; // batch makes the wrapped dispatches to render only once
+import { useSelector, useDispatch /*batch*/ } from 'react-redux'; // batch makes the wrapped dispatches to render only once
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Styledh2, StyledP } from './styling/StyledText';
 
-import { users } from '../reducers/users';
+// import { users } from '../reducers/users';
 // import { recipe } from '../reducers/recipes';
-import { API_PROFILE } from '../utils/urls';
+// import { API_PROFILE } from '../utils/urls';
 
 import CreateRecipe from './CreateRecipe.js';
 
@@ -25,8 +25,8 @@ const WelcomeText = styled.div`
 `;
 
 const Profile = () => {
-	const dispatch = useDispatch();
-	const { userId } = useParams();
+	// const dispatch = useDispatch();
+	// const { userId } = useParams();
 	const navigate = useNavigate();
 
 	const username = useSelector((store) => store.user.username);
