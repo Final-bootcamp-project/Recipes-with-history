@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch, batch } from 'react-redux';
 
 import { StyledForm } from './styling/StyledForm.js';
@@ -26,8 +27,9 @@ const CreateRecipe = () => {
 	const username = useSelector((store) => store.user.username);
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-	const addRecipe = (accessToken, userId) => {
+	const addRecipe = (accessToken, userId, newRecipe) => {
 		const options = {
 			method: 'POST',
 			headers: {
@@ -48,10 +50,11 @@ const CreateRecipe = () => {
 			.then((data) => {
 				if (data.success) {
 					batch(() => {
-						dispatch(recipe.actions.addRecipe(accessToken, userId()));
+						dispatch(recipe.actions.addRecipe(accessToken, userId, newRecipe()));
 						dispatch(recipe.actions.setError(null()));
 					});
-					console.log(data, 'hejsan');
+					setNewRecipe(''); // clears the input
+					navigate('../recipes');
 				} else {
 					batch(() => {
 						dispatch(recipe.actions.setRecipe([]));
@@ -59,14 +62,16 @@ const CreateRecipe = () => {
 					});
 				}
 			})
+
 			.catch((error) => {
 				console.error(error);
 			});
 	};
-	const onAddRecipe = (accessToken, userId) => {
-		dispatch(addRecipe(accessToken, userId, newRecipe));
-		setNewRecipe(''); // clears the input
-	};
+	// const onAddRecipe = (accessToken, userId) => {
+	// 	dispatch(addRecipe(accessToken, userId, newRecipe));
+	// 	setNewRecipe(''); // clears the input
+	// 	navigate('../recipes');
+	// };
 
 	return (
 		<div>
@@ -134,7 +139,7 @@ const CreateRecipe = () => {
 
 				<StyledButton
 					type='submit'
-					onClick={() => onAddRecipe(accessToken, userId, recipe)}>
+					onClick={() => addRecipe(accessToken, userId, newRecipe)}>
 					New Recipe
 				</StyledButton>
 			</StyledForm>

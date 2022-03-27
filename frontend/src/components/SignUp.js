@@ -63,6 +63,7 @@ const SignUp = () => {
 					type='text'
 					value={name}
 					onChange={(event) => setName(event.target.value)}
+					required
 				/>
 
 				<label htmlFor='usernameInput'>username:</label>
@@ -71,6 +72,8 @@ const SignUp = () => {
 					type='text'
 					value={username}
 					onChange={(event) => setUsername(event.target.value)}
+					required
+					minLength={5}
 				/>
 
 				<label htmlFor='emailInput'>email:</label>
@@ -79,6 +82,7 @@ const SignUp = () => {
 					type='email'
 					value={email}
 					onChange={(event) => setEmail(event.target.value)}
+					required
 				/>
 
 				<label htmlFor='passwordInput'>password:</label>
@@ -87,6 +91,8 @@ const SignUp = () => {
 					type='password'
 					value={password}
 					onChange={(event) => setPassword(event.target.value)}
+					required
+					minLength={8}
 				/>
 				<StyledButton type='submit'>Create user</StyledButton>
 			</StyledForm>

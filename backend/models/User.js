@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema({
 	username: {
 		type: String,
 		unique: true,
+		minlength: [5, 'You need at least 5 letters for your username'],
 	},
 	password: {
 		type: String,
