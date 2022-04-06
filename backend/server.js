@@ -39,7 +39,6 @@ app.get('/endpoints', async (req, res) => {
 //---------- USER ENDPOINTS
 app.post('/signup', signUp);
 app.post('/signin', signIn);
-// app.get('/profile/:userId', authenticateUser, userRecipes);
 
 //---------- VIEW GUEST RECIPES ENDPOINT, GET
 app.get('/recipelist', recipeList); // 4 recipes for guest user

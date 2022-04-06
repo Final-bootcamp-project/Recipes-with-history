@@ -37,59 +37,6 @@ const Profile = () => {
 		}
 	}, [accessToken, navigate]);
 
-	// useEffect(() => {
-	// 	const options = {
-	// 		method: 'GET',
-	// 		headers: {
-	// 			Authorization: accessToken,
-	// 		},
-	// 	};
-
-	// 	fetch(API_PROFILE(userId), options)
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			if (data.success) {
-	// 				batch(() => {
-	// 					dispatch(users.actions.setUser(data.response));
-	// 					dispatch(users.actions.setError(null));
-	// 				});
-	// 			} else {
-	// 				batch(() => {
-	// 					dispatch(users.actions.setUser(null));
-	// 					dispatch(users.actions.setError(data.response));
-	// 				});
-	// 			}
-	// 		});
-	// }, [accessToken, dispatch, userId]);
-
-	// const optionsUser = {
-	// 	method: 'GET',
-	// 	headers: {
-	// 		Authorization: accessToken,
-	// 	},
-	// };
-
-	// const fetchUserRecipes = () => {
-	// 	fetch(API_URL('/profile/:userId'), optionsUser)
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			console.log(data);
-	// 			if (data.success) {
-	// 				batch(() => {
-	// 					dispatch(recipe.actions.setUserRecipes(data.response));
-	// 					dispatch(recipe.actions.setError(null));
-	// 					console.log(data.response);
-	// 				});
-	// 			} else {
-	// 				batch(() => {
-	// 					dispatch(recipe.actions.setUserRecipes(null));
-	// 					dispatch(recipe.actions.setError(data.response));
-	// 				});
-	// 			}
-	// 		});
-	// };
-	// 					REMEMBER TO IMPORT USEDISPATCH, USEPARAMS, AND BATCH
-
 	return (
 		<ProfileWrapper>
 			<WelcomeText>
