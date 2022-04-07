@@ -1,11 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { useDispatch } from "react-redux";
 import uniqid from 'uniqid';
-// Imported user reducer
-// import { setUserId, setAccessToken } from './user';
-// import { API_URL } from "../utils/urls";
-
-// import { users } from './users.js'
 
 export const recipe = createSlice({
 	name: 'recipe',

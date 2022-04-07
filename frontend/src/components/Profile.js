@@ -5,10 +5,6 @@ import styled from 'styled-components';
 
 import { Styledh2, StyledP } from './styling/StyledText';
 
-// import { users } from '../reducers/users';
-// import { recipe } from '../reducers/recipes';
-// import { API_PROFILE } from '../utils/urls';
-
 import CreateRecipe from './CreateRecipe.js';
 
 const ProfileWrapper = styled.div`

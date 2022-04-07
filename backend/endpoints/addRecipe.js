@@ -10,13 +10,10 @@ export const addRecipe = async (req, res) => {
 		uploadedBy,
 		recipeCreator,
 	} = req.body;
-
-	console.log(req.body, 'första');
 	try {
 		const user = await User.findOne({
 			accessToken: req.header('Authorization'),
 		});
-
 		const newRecipe = await new Recipe({
 			title,
 			ingredients,
@@ -25,7 +22,6 @@ export const addRecipe = async (req, res) => {
 			uploadedBy: user,
 			recipeCreator,
 		}).save();
-		console.log(newRecipe, 'andra');
 		//If successful, status code = successful:
 		res.status(201).json({
 			response: newRecipe,
@@ -39,6 +35,5 @@ export const addRecipe = async (req, res) => {
 			success: false,
 			message: 'Recipe could not be created, please try again',
 		});
-		console.log(error, 'tredje');
 	}
 };

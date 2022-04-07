@@ -11,14 +11,13 @@ import { StyledSelect } from './styling/StyledSelect.js';
 import { recipe } from '../reducers/recipes';
 import { API_URL } from '../utils/urls.js';
 
-// ----------- ADD RECIPE TO
+// ----------- ADD RECIPE 
 
 const CreateRecipe = () => {
 	const [newRecipe, setNewRecipe] = useState({});
 	const [title, setTitle] = useState('');
 	const [cookingSteps, setCookingSteps] = useState('');
 	const [ingredients, setIngredients] = useState('');
-
 	const [category, setCategory] = useState('');
 	const [recipeCreator, setRecipeCreator] = useState('');
 
@@ -29,7 +28,10 @@ const CreateRecipe = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const addRecipe = (accessToken, userId, newRecipe) => {
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+
 		const options = {
 			method: 'POST',
 			headers: {
@@ -45,16 +47,21 @@ const CreateRecipe = () => {
 				user: userId,
 			}),
 		};
+
 		fetch(API_URL('recipes'), options)
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.success) {
 					batch(() => {
-						dispatch(recipe.actions.addRecipe(accessToken, userId, newRecipe()));
-						dispatch(recipe.actions.setError(null()));
+						dispatch(recipe.actions.addRecipe(accessToken, userId, title, ingredients, recipeCreator, category, cookingSteps, newRecipe));
+						dispatch(recipe.actions.setError(null));
 					});
-					setNewRecipe(''); // clears the input
-					navigate('../recipes');
+					setTitle('') 
+					setCookingSteps('') 
+					setIngredients('')
+					setRecipeCreator('')
+					setCategory('')
+					navigate('/recipes');
 				} else {
 					batch(() => {
 						dispatch(recipe.actions.setRecipe([]));
@@ -62,20 +69,14 @@ const CreateRecipe = () => {
 					});
 				}
 			})
-
 			.catch((error) => {
 				console.error(error);
 			});
 	};
-	// const onAddRecipe = (accessToken, userId) => {
-	// 	dispatch(addRecipe(accessToken, userId, newRecipe));
-	// 	setNewRecipe(''); // clears the input
-	// 	navigate('../recipes');
-	// };
 
 	return (
 		<div>
-			<StyledForm>
+			<StyledForm onSubmit={handleSubmit}>
 				<h2>Add new recipe </h2>
 				<StyledSelect
 					id='category'
@@ -137,9 +138,10 @@ const CreateRecipe = () => {
 				<StyledLabel htmlFor='uploadedBy'>Uploaded by: </StyledLabel>
 				<StyledInput id='uploadedBy' type='text' value={username} readOnly />
 
-				<StyledButton
-					type='submit'
-					onClick={() => addRecipe(accessToken, userId, newRecipe)}>
+				<StyledButton 
+				type='submit'
+				onClick={(event) => setNewRecipe(event.target.value)}
+				>
 					New Recipe
 				</StyledButton>
 			</StyledForm>

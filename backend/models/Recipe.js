@@ -1,8 +1,5 @@
 import mongoose from 'mongoose';
 
-//-----------------TAGS & CATEGORY????-------------------------
-//Schema.plugin(random, { path: 'r' }); // by default `path` is `random`. It's used internally to store a random value on each doc.
-
 //-------------- MONGOOSE SCHEMA FOR RECIPE----------
 const RecipeSchema = mongoose.Schema({
 	title: {

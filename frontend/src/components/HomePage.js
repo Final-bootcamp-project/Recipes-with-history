@@ -28,17 +28,14 @@ const HomePage = () => {
 					batch(() => {
 						dispatch(recipe.actions.setRecipe(data.response));
 						dispatch(recipe.actions.setError(null));
-						console.log(data, 'yay!');
 					});
 				} else {
 					batch(() => {
 						dispatch(recipe.actions.setRecipe(null));
 						dispatch(recipe.actions.setError(data.response));
-						console.log('nope...');
 					});
 				}
 			})
-			.then(console.log('hej'));
 	}, [dispatch, accessToken]);
 
 	return (

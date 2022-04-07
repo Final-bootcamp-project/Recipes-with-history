@@ -7,9 +7,7 @@ import { signUp } from './endpoints/signUp.js';
 import { signIn } from './endpoints/signIn.js';
 import { recipeList, allRecipes } from './endpoints/recipeList.js';
 import { addRecipe } from './endpoints/addRecipe.js';
-// import { findRecipes } from './endpoints/findRecipes.js';
 import { likeRecipe } from './endpoints/likeRecipe.js';
-import { userRecipes } from './endpoints/userRecipes.js';
 
 import authenticateUser from './utils/authentication.js';
 

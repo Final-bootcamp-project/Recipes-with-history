@@ -8,7 +8,6 @@ export const signUp = async (req, res) => {
 		const salt = bcrypt.genSaltSync();
 		// a condition for creating a password
 		if (password.length < 6 || username.length < 5) {
-			console.log('user could not be created');
 			//redirecting to catch
 			throw 'Password must be at least 6 characters long and username must be longer than 5 characters';
 		}
